@@ -69,7 +69,8 @@ Patch43: php-5.4.0-phpize.patch
 Patch44: php-5.4.0-system-libzip.patch
 
 # https://bugs.php.net/bug.php?id=62172
-Patch50: fpm-balancer.patch
+# patched up stream
+#Patch50: fpm-balancer.patch
 
 # Fixes for tests
 
@@ -717,9 +718,9 @@ support for using the enchant library to PHP.
 %patch44 -p1 -b .systzip
 %endif
 
-%if %{with_fpm}
-%patch50 -p1 -b .fpm_balancer
-%endif
+#%if %{with_fpm}
+#%patch50 -p1 -b .fpm_balancer
+#%endif
 
 # Prevent %%doc confusion over LICENSE files
 cp Zend/LICENSE Zend/ZEND_LICENSE
@@ -1428,6 +1429,7 @@ fi
 %changelog
 * Fri Jun 07 2013 Ben Harper <ben.harper@rackspace.com> - 5.4.16-1.ius
 - Latest sources from upstream
+- disable Patch50
 
 * Thu May 09 2013 Ben Harper <ben.harper@rackspace.com> - 5.4.15-1.ius
 - Latest source from upstream
