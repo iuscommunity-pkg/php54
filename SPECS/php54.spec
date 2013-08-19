@@ -812,7 +812,7 @@ echo "d %{_localstatedir}/run/php-fpm 755 root root" >php-fpm.tmpfiles
 
 
 %build
-#not sure if this is the best place for this fix
+#Fix for zts see, https://bugs.php.net/bug.php?id=65460
 rm Zend/zend_{language,ini}_parser.[ch]
 ./genfiles
 
