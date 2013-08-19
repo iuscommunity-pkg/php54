@@ -71,6 +71,7 @@ Patch44: php-5.4.0-system-libzip.patch
 # https://bugs.php.net/bug.php?id=62172
 # patched up stream
 #Patch50: fpm-balancer.patch
+Patch51: php-5.4.18-bison.patch
 
 # Fixes for tests
 
@@ -722,6 +723,8 @@ support for using the enchant library to PHP.
 #%patch50 -p1 -b .fpm_balancer
 #%endif
 
+%patch51 -p1
+
 # Prevent %%doc confusion over LICENSE files
 cp Zend/LICENSE Zend/ZEND_LICENSE
 cp TSRM/LICENSE TSRM_LICENSE
@@ -1346,8 +1349,11 @@ fi
 %defattr(-,root,root)
 %{_bindir}/php
 %{_bindir}/php-cgi
+%{_mandir}/man1/php-cgi.1*
 %{_bindir}/phar.phar
 %{_bindir}/phar
+%{_mandir}/man1/phar.1*
+%{_mandir}/man1/phar.phar.1*
 # provides phpize here (not in -devel) for pecl command
 %{_bindir}/phpize
 %{_mandir}/man1/php.1*
@@ -1429,6 +1435,7 @@ fi
 %changelog
 * Fri Aug 16 2013 Ben Harper <ben.harper@rackspace.com> - 5.4.18-1.ius
 - Latest sources from upstream
+- added php-5.4.18-bison.patch, see LP bug #1213017
 
 * Mon Jul 08 2013 Ben Harper <ben.harper@rackspace.com> - 5.4.17-1.ius
 - Latest sources from upstream
