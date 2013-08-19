@@ -812,6 +812,10 @@ echo "d %{_localstatedir}/run/php-fpm 755 root root" >php-fpm.tmpfiles
 
 
 %build
+#not sure if this is the best place for this fix
+rm Zend/zend_{language,ini}_parser.[ch]
+./genfiles
+
 %if 0%{?fedora} >= 11 || 0%{?rhel} >= 6
 # aclocal workaround - to be improved
 cat `aclocal --print-ac-dir`/{libtool,ltoptions,ltsugar,ltversion,lt~obsolete}.m4 >>aclocal.m4
