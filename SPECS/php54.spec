@@ -150,6 +150,7 @@ Provides: %{name}-pcntl, php-pcntl
 Provides: %{real_name}-pcntl, php-pcntl
 Provides: %{name}-readline, php-readline
 Provides: %{real_name}-readline, php-readline
+Provides: %{real_name}-cli = %{version}-%{release}
 
 %description cli
 The php-cli package contains the command-line interface 
@@ -1437,6 +1438,9 @@ fi
 
 
 %changelog
+* Tue Aug 20 2013 Ben Harper <ben.harper@rackspace.com> - 5.4.18-2.ius
+- added Provides for cli, see LP bug#1214603
+
 * Fri Aug 16 2013 Ben Harper <ben.harper@rackspace.com> - 5.4.18-1.ius
 - Latest sources from upstream
 - added php-5.4.18-bison.patch, see LP bug #1213017
