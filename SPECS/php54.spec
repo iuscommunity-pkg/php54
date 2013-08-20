@@ -37,7 +37,7 @@
 Summary: PHP scripting language for creating dynamic web sites
 Name: %{name}
 Version: 5.4.18
-Release: 1.ius%{?dist}
+Release: 2.ius%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://www.php.net/
