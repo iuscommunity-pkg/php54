@@ -36,8 +36,8 @@
 
 Summary: PHP scripting language for creating dynamic web sites
 Name: %{name}
-Version: 5.4.18
-Release: 2.ius%{?dist}
+Version: 5.4.19
+Release: 1.ius%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://www.php.net/
@@ -724,7 +724,9 @@ support for using the enchant library to PHP.
 #%patch50 -p1 -b .fpm_balancer
 #%endif
 
+%if 0%{?rhel} < 6
 %patch51 -p1
+%endif
 
 # Prevent %%doc confusion over LICENSE files
 cp Zend/LICENSE Zend/ZEND_LICENSE
@@ -1438,6 +1440,10 @@ fi
 
 
 %changelog
+* Fri Aug 23 2013 Ben Harper <ben.harper@rackspace.com> - 5.8.19-1.ius
+- Latest sources from upstream
+- updated php-5.4.18-bison.patch, as it got patch upstream for RHEL 6 but not 5
+
 * Tue Aug 20 2013 Ben Harper <ben.harper@rackspace.com> - 5.4.18-2.ius
 - added Provides for cli, see LP bug#1214603
 
