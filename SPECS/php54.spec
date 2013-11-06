@@ -37,7 +37,7 @@
 Summary: PHP scripting language for creating dynamic web sites
 Name: %{name}
 Version: 5.4.21
-Release: 1.ius%{?dist}
+Release: 2.ius%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://www.php.net/
@@ -177,6 +177,10 @@ Group: Development/Languages
 Summary: Common files for PHP
 Provides: %{name}-common = %{version}-%{release}
 Provides: %{real_name}-common = %{version}-%{release}
+Provides: %{name}(language) = %{version}
+Provides: %{name}(language)%{?_isa} = %{version}
+Provides: %{real_name}(language) = %{version}
+Provides: %{real_name}(language)%{?_isa} = %{version}
 # ABI/API check - Arch specific
 Provides: %{name}-api = %{apiver}, %{name}-zend-abi = %{zendver}
 Provides: %{name}(api) = %{apiver}, %{name}(zend-abi) = %{zendver}
@@ -211,6 +215,8 @@ Provides: %{name}-simplexml
 Provides: %{name}-sockets
 Provides: %{name}-spl
 Provides: %{name}-tokenizer
+Provides: %{name}-filter
+Provides: %{name}-filter%{?_isa}
 # ABI/API check - Arch specific
 Provides: %{real_name}-api = %{apiver}, %{real_name}-zend-abi = %{zendver}
 Provides: %{real_name}(api) = %{apiver}, %{real_name}(zend-abi) = %{zendver}
@@ -245,6 +251,8 @@ Provides: %{real_name}-simplexml
 Provides: %{real_name}-sockets
 Provides: %{real_name}-spl
 Provides: %{real_name}-tokenizer
+Provides: %{real_name}-filter
+Provides: %{real_name}-filter%{?_isa}
 %if %{with_zip}
 Provides: %{name}-zip
 Provides: %{real_name}-zip
@@ -519,10 +527,14 @@ Provides: %{name}-dom, %{name}-dom
 Provides: %{name}-xsl, %{name}-xsl
 Provides: %{name}-domxml, %{name}-domxml
 Provides: %{name}-wddx, %{name}-wddx
+Provides: %{name}-xmlreader, %{name}-xmlreader%{?_isa}
+Provides: %{name}-xmlwriter, %{name}-xmlwriter%{?_isa} 
 Provides: %{real_name}-dom, %{real_name}-dom
 Provides: %{real_name}-xsl, %{real_name}-xsl
 Provides: %{real_name}-domxml, %{real_name}-domxml
 Provides: %{real_name}-wddx, %{real_name}-wddx
+Provides: %{real_name}-xmlreader, %{real_name}-xmlreader%{?_isa}
+Provides: %{real_name}-xmlwriter, %{real_name}-xmlwriter%{?_isa}
 BuildRequires: libxslt-devel >= 1.0.18-1, libxml2-devel >= 2.4.14-1
 
 %description xml
@@ -1440,6 +1452,9 @@ fi
 
 
 %changelog
+* Wed Nov 06 2013 Ben Harper <ben.harper@rackspace.com> - 5.4.21-2.ius
+- adding provides from LB bugs 1248288, 1248294 and 1248299
+
 * Fri Oct 18 2013 Ben Harper <ben.harper@rackspace.com> - 5.4.21-1.ius
 - Latest sources from upstream
 
