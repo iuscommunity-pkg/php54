@@ -36,8 +36,8 @@
 
 Summary: PHP scripting language for creating dynamic web sites
 Name: %{name}
-Version: 5.4.21
-Release: 2.ius%{?dist}
+Version: 5.4.22
+Release: 1.ius%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://www.php.net/
@@ -1452,6 +1452,9 @@ fi
 
 
 %changelog
+* Fri Nov 15 2013 Ben Harper <ben.harper@rackspace.com> - 5.4.22-1.ius
+- Latest sources from upstream
+
 * Wed Nov 06 2013 Ben Harper <ben.harper@rackspace.com> - 5.4.21-2.ius
 - adding provides from LB bugs 1248288, 1248294 and 1248299
 
