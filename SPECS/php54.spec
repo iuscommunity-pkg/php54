@@ -37,7 +37,7 @@
 Summary: PHP scripting language for creating dynamic web sites
 Name: %{name}
 Version: 5.4.22
-Release: 1.ius%{?dist}
+Release: 2.ius%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://www.php.net/
@@ -51,6 +51,10 @@ Source5: php-fpm-www.conf
 Source6: php-fpm.init
 Source7: php-fpm.logrotate
 Source8: php-fpm.sysconfig
+
+Source9: cve-2013-6420.crt
+Source10: cve-2013-6420.phpt
+
 
 # Build fixes
 Patch5: php-5.2.0-includedir.patch
@@ -72,6 +76,9 @@ Patch44: php-5.4.0-system-libzip.patch
 # patched up stream
 #Patch50: fpm-balancer.patch
 Patch51: php-5.4.18-bison.patch
+
+Patch52: php-5.3.27-openssl.patch
+
 
 # Fixes for tests
 
@@ -739,6 +746,11 @@ support for using the enchant library to PHP.
 %if 0%{?rhel} < 6
 %patch51 -p1
 %endif
+
+%patch52 -p1
+
+cp %{SOURCE9} ext/openssl/tests/
+cp %{SOURCE10} ext/openssl/tests/
 
 # Prevent %%doc confusion over LICENSE files
 cp Zend/LICENSE Zend/ZEND_LICENSE
@@ -1452,6 +1464,9 @@ fi
 
 
 %changelog
+* Wed Dec 11 2013 Ben Harper <ben.harper@rackspace.com> - 5.4.22-2.ius
+- Source9, Source10 and Patch52 add to address cve-2013-6420
+
 * Fri Nov 15 2013 Ben Harper <ben.harper@rackspace.com> - 5.4.22-1.ius
 - Latest sources from upstream
 
