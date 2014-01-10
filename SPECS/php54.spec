@@ -36,8 +36,8 @@
 
 Summary: PHP scripting language for creating dynamic web sites
 Name: %{name}
-Version: 5.4.23
-Release: 3.ius%{?dist}
+Version: 5.4.24
+Release: 1.ius%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://www.php.net/
@@ -1453,6 +1453,9 @@ fi
 
 
 %changelog
+* Fri Jan 10 2014 Ben Harper <ben.harper@rackspace.com> - 5.4.24-1.ius
+- Latest sources from upstream
+
 * Fri Dec 13 2013 Ben Harper <ben.harper@rackspace.com> - 5.4.23-1.ius
 - Latest sources from upstream
 - Source9, Source10 and Patch52 removed as cve-2013-6420 patched upstream
