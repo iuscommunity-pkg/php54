@@ -1329,6 +1329,15 @@ rm -f README.{Zeus,QNX,CVS-RULES}
 rm files.* macros.php
 
 %if %{with_fpm}
+%pre fpm
+# Add the "apache" user as we don't require httpd
+getent group  apache >/dev/null || \
+  groupadd -g 48 -r apache
+getent passwd apache >/dev/null || \
+  useradd -r -u 48 -g apache -s /sbin/nologin \
+    -d %{_httpd_contentdir} -c "Apache" apache
+exit 0
+
 %post fpm
 /sbin/chkconfig --add php-fpm
 
