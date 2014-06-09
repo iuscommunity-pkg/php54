@@ -37,7 +37,7 @@
 Summary: PHP scripting language for creating dynamic web sites
 Name: %{name}
 Version: 5.4.29
-Release: 2.ius%{?dist}
+Release: 3.ius%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://www.php.net/
@@ -1469,6 +1469,11 @@ fi
 
 
 %changelog
+* Mon Jun 09 2014 Carl George <carl.george@rackspace.com> - 5.4.29-3.ius
+- Add %pre fpm section to add apache user
+- Update requires for fpm
+- Correct bc issue in unserialize function
+
 * Wed Jun 04 2014 Carl George <carl.george@rackspace.com> - 5.4.29-2.ius
 - Rebuild for updated gnutls (RHSA-2014-0595)
 
