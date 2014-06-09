@@ -162,7 +162,8 @@ executing PHP scripts, /usr/bin/php, and the CGI interface.
 %package fpm
 Group: Development/Languages
 Summary: PHP FastCGI Process Manager
-Requires: %{real_name}-common = %{version}-%{release}
+Requires: %{name}-common = %{version}-%{release}
+Requires(pre): /usr/sbin/useradd
 Provides: %{name}-fpm = %{version}-%{release}
 Provides: %{real_name}-fpm = %{version}-%{release}
 BuildRequires: libevent-devel >= 1.4.11
