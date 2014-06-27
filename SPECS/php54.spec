@@ -36,8 +36,8 @@
 
 Summary: PHP scripting language for creating dynamic web sites
 Name: %{name}
-Version: 5.4.29
-Release: 3.ius%{?dist}
+Version: 5.4.30
+Release: 1.ius%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://www.php.net/
@@ -72,10 +72,6 @@ Patch44: php-5.4.0-system-libzip.patch
 # patched up stream
 #Patch50: fpm-balancer.patch
 Patch51: php-5.4.18-bison.patch
-
-# https://bugs.launchpad.net/ius/+bug/1324826
-# https://github.com/php/php-src/commit/20568e502814fffc41d91a22edaf75ff5ae19d5c
-Patch53: php-5.4.29-unserialize.patch
 
 
 # Fixes for tests
@@ -745,8 +741,6 @@ support for using the enchant library to PHP.
 %if 0%{?rhel} < 6
 %patch51 -p1
 %endif
-
-%patch53 -p1
 
 # Prevent %%doc confusion over LICENSE files
 cp Zend/LICENSE Zend/ZEND_LICENSE
@@ -1469,6 +1463,10 @@ fi
 
 
 %changelog
+* Fri Jun 27 2014 Carl George <carl.george@rackspace.com> - 5.4.30-1.ius
+- Latest upstream source
+- Patch53 removed (fixed upstream)
+
 * Mon Jun 09 2014 Carl George <carl.george@rackspace.com> - 5.4.29-3.ius
 - Add %pre fpm section to add apache user
 - Update requires for fpm
