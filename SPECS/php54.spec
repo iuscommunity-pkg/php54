@@ -1403,7 +1403,7 @@ fi
 %{_sbindir}/php-fpm
 %dir %{_sysconfdir}/php-fpm.d
 # log owned by apache for log
-%attr(770,apache,root) %dir %{_localstatedir}/log/php-fpm
+%attr(770,apache,apache) %dir %{_localstatedir}/log/php-fpm
 %dir %{_localstatedir}/run/php-fpm
 %{_mandir}/man8/php-fpm.8*
 %{_datadir}/fpm/status.html
@@ -1463,6 +1463,9 @@ fi
 
 
 %changelog
+* Mon Aug 18 2014 Carl George <carl.george@rackspace.com> - 5.4.31-2.ius
+- Change group ownership of fpm log directory from root to apache
+
 * Fri Jul 25 2014 Carl George <carl.george@rackspace.com> - 5.4.31-1.ius
 - Latest upstream source
 
