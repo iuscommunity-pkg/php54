@@ -36,8 +36,8 @@
 
 Summary: PHP scripting language for creating dynamic web sites
 Name: %{name}
-Version: 5.4.31
-Release: 2.ius%{?dist}
+Version: 5.4.32
+Release: 1.ius%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://www.php.net/
@@ -1463,6 +1463,9 @@ fi
 
 
 %changelog
+* Fri Aug 22 2014 Ben Harper <ben.harper@rackspace.com> - 5.4.32-1.ius
+- Latest upstream source
+
 * Mon Aug 18 2014 Carl George <carl.george@rackspace.com> - 5.4.31-2.ius
 - Change group ownership of fpm log directory from root to apache
 
