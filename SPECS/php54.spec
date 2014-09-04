@@ -37,7 +37,7 @@
 Summary: PHP scripting language for creating dynamic web sites
 Name: %{name}
 Version: 5.4.32
-Release: 1.ius%{?dist}
+Release: 2.ius%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://www.php.net/
@@ -152,6 +152,7 @@ Provides: %{real_name}-pcntl, php-pcntl
 Provides: %{name}-readline, php-readline
 Provides: %{real_name}-readline, php-readline
 Provides: %{real_name}-cli = %{version}-%{release}
+Conflicts: %{real_name}-cli < %{base_ver}
 
 %description cli
 The php-cli package contains the command-line interface 
@@ -167,6 +168,7 @@ Requires(pre): /usr/sbin/useradd
 Provides: %{name}-fpm = %{version}-%{release}
 Provides: %{real_name}-fpm = %{version}-%{release}
 BuildRequires: libevent-devel >= 1.4.11
+Conflicts: %{real_name}-fpm < %{base_ver}
 
 %description fpm
 PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI
@@ -269,6 +271,7 @@ Provides: %{name}-zlib, %{name}-zlib
 Provides: %{real_name}-zlib, %{real_name}-zlib
 Obsoletes: %{name}-openssl, %{name}-pecl-json, %{name}-json, %{name}-pecl-phar, %{name}-pecl-Fileinfo
 Obsoletes: %{name}-mhash < 5.3.0
+Conflicts: %{real_name}-common < %{base_ver}
 
 %description common
 The php-common package contains files used by both the php
@@ -285,6 +288,7 @@ Provides: %{name}-zts-devel = %{version}-%{release}
 Provides: %{real_name}-zts-devel = %{version}-%{release}
 Provides: %{name}-zts-devel = %{version}-%{release}
 Provides: %{real_name}-zts-devel = %{version}-%{release}
+Conflicts: %{real_name}-devel < %{base_ver}
 
 %description devel
 The php-devel package contains the files needed for building PHP
@@ -299,6 +303,7 @@ Provides: %{real_name}-imap = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 Obsoletes: mod_php3-imap, stronghold-php-imap
 BuildRequires: krb5-devel, openssl-devel, libc-client-devel
+Conflicts: %{real_name}-imap < %{base_ver}
 
 %description imap
 The php-imap package contains a dynamic shared object (DSO) for the
@@ -317,6 +322,7 @@ Provides: %{real_name}-ldap = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 Obsoletes: mod_php3-ldap, stronghold-php-ldap
 BuildRequires: cyrus-sasl-devel, openldap-devel, openssl-devel
+Conflicts: %{real_name}-ldap < %{base_ver}
 
 %description ldap
 The php-ldap package is a dynamic shared object (DSO) for the Apache
@@ -341,6 +347,7 @@ Provides: %{name}-pdo_sqlite, %{name}-pdo_sqlite
 Provides: %{real_name}-pdo-abi = %{pdover}
 Provides: %{real_name}-sqlite3, %{real_name}-sqlite3
 Provides: %{real_name}-pdo_sqlite, %{real_name}-pdo_sqlite
+Conflicts: %{real_name}-pdo < %{base_ver}
 
 %description pdo
 The php-pdo package contains a dynamic shared object that will add
@@ -365,6 +372,7 @@ Provides: %{real_name}-pdo_mysql, %{real_name}-pdo_mysql
 Obsoletes: mod_php3-mysql, stronghold-php-mysql
 BuildRequires: mysql-devel >= 4.1.0
 Conflicts: %{name}-mysqlnd
+Conflicts: %{real_name}-mysql < %{base_ver}
 
 %description mysql
 The php-mysql package contains a dynamic shared object that will add
@@ -391,6 +399,7 @@ Provides: %{real_name}-mysql = %{version}-%{release}
 Provides: %{real_name}-mysqli = %{version}-%{release}
 Provides: %{real_name}-mysqli = %{version}-%{release}
 Provides: %{real_name}-pdo_mysql, %{real_name}-pdo_mysql
+Conflicts: %{real_name}-mysqlnd < %{base_ver}
 
 %description mysqlnd
 The php-mysqlnd package contains a dynamic shared object that will add
@@ -413,6 +422,7 @@ Provides: %{real_name}_database
 Provides: %{real_name}-pdo_pgsql, %{real_name}-pdo_pgsql
 Obsoletes: mod_php3-pgsql, stronghold-php-pgsql
 BuildRequires: krb5-devel, openssl-devel, postgresql-devel
+Conflicts: %{real_name}-pgsql < %{base_ver}
 
 %description pgsql
 The php-pgsql package includes a dynamic shared object (DSO) that can
@@ -437,6 +447,7 @@ Provides: %{real_name}-posix, %{real_name}-posix
 Provides: %{real_name}-sysvsem, %{real_name}-sysvsem
 Provides: %{real_name}-sysvshm, %{real_name}-sysvshm
 Provides: %{real_name}-sysvmsg, %{real_name}-sysvmsg
+Conflicts: %{real_name}-process < %{base_ver}
 
 %description process
 The php-process package contains dynamic shared objects which add
@@ -455,6 +466,7 @@ Provides: %{real_name}_database
 Provides: %{real_name}-pdo_odbc, %{real_name}-pdo_odbc
 Obsoletes: stronghold-php-odbc
 BuildRequires: unixODBC-devel
+Conflicts: %{real_name}-odbc < %{base_ver}
 
 %description odbc
 The php-odbc package contains a dynamic shared object that will add
@@ -472,6 +484,7 @@ Provides: %{real_name}-soap = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 Summary: A module for PHP applications that use the SOAP protocol
 BuildRequires: libxml2-devel
+Conflicts: %{real_name}-soap < %{base_ver}
 
 %description soap
 The php-soap package contains a dynamic shared object that will add
@@ -490,6 +503,7 @@ Provides: 	%{name}-pdo_firebird, %{name}-pdo_firebird
 Provides: 	%{real_name}_database
 Provides: 	%{real_name}-firebird, %{real_name}-firebird
 Provides: 	%{real_name}-pdo_firebird, %{real_name}-pdo_firebird
+Conflicts:      %{real_name}-interbase < %{base_ver}
 
 %description interbase
 The php-interbase package contains a dynamic shared object that will add
@@ -511,6 +525,7 @@ Provides: %{name}-snmp = %{version}-%{release}
 Provides: %{real_name}-snmp = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}, net-snmp
 BuildRequires: net-snmp-devel
+Conflicts: %{real_name}-snmp < %{base_ver}
 
 %description snmp
 The php-snmp package contains a dynamic shared object that will add
@@ -538,6 +553,7 @@ Provides: %{real_name}-wddx, %{real_name}-wddx
 Provides: %{real_name}-xmlreader, %{real_name}-xmlreader%{?_isa}
 Provides: %{real_name}-xmlwriter, %{real_name}-xmlwriter%{?_isa}
 BuildRequires: libxslt-devel >= 1.0.18-1, libxml2-devel >= 2.4.14-1
+Conflicts: %{real_name}-xml < %{base_ver}
 
 %description xml
 The php-xml package contains dynamic shared objects which add support
@@ -550,6 +566,7 @@ Group: Development/Languages
 Provides: %{name}-xmlrpc = %{version}-%{release}
 Provides: %{real_name}-xmlrpc = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
+Conflicts: %{real_name}-xmlrpc < %{base_ver}
 
 %description xmlrpc
 The php-xmlrpc package contains a dynamic shared object that will add
@@ -561,6 +578,7 @@ Group: Development/Languages
 Provides: %{name}-mbstring = %{version}-%{release}
 Provides: %{real_name}-mbstring = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
+Conflicts: %{real_name}-mbstring < %{base_ver}
 
 %description mbstring
 The php-mbstring package contains a dynamic shared object that will add
@@ -575,6 +593,7 @@ Requires: %{name}-common = %{version}-%{release}
 # Required to build the bundled GD library
 BuildRequires: libjpeg-devel, libpng-devel, freetype-devel
 BuildRequires: libXpm-devel, t1lib-devel
+Conflicts: %{real_name}-gd < %{base_ver}
 
 %description gd
 The php-gd package contains a dynamic shared object that will add
@@ -586,6 +605,7 @@ Group: Development/Languages
 Provides: %{name}-bcmath = %{version}-%{release}
 Provides: %{real_name}-bcmath = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
+Conflicts: %{real_name}-bcmath < %{base_ver}
 
 %description bcmath
 The php-bcmath package contains a dynamic shared object that will add
@@ -597,6 +617,7 @@ Group: Development/Languages
 Provides: %{name}-dba = %{version}-%{release}
 Provides: %{real_name}-dba = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
+Conflicts: %{real_name}-dba < %{base_ver}
 
 %description dba
 The php-dba package contains a dynamic shared object that will add
@@ -609,6 +630,7 @@ Group: Development/Languages
 Requires: %{name}-common = %{version}-%{release}
 Provides: %{real_name}-litespeed = %{version}-%{release}
 Provides: %{name}-litespeed = %{version}-%{release}
+Conflicts: %{real_name}-litespeed < %{base_ver}
 
 %description litespeed
 The php-litespeed package contains the binary used by the Litespeed web server.
@@ -621,6 +643,7 @@ Provides: %{name}-mcrypt = %{version}-%{release}
 Provides: %{real_name}-mcrypt = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 BuildRequires: libmcrypt-devel
+Conflicts: %{real_name}-mcrypt < %{base_ver}
 
 %description mcrypt
 The php-mcrypt package contains a dynamic shared object that will add
@@ -633,6 +656,7 @@ Provides: %{name}-tidy = %{version}-%{release}
 Provides: %{real_name}-tidy = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 BuildRequires: libtidy-devel
+Conflicts: %{real_name}-tidy < %{base_ver}
 
 %description tidy
 The php-tidy package contains a dynamic shared object that will add
@@ -647,6 +671,7 @@ Requires: %{name}-pdo = %{version}-%{release}
 BuildRequires: freetds-devel
 Provides: %{name}-pdo_dblib, %{name}-pdo_dblib
 Provides: %{real_name}-pdo_dblib, %{real_name}-pdo_dblib
+Conflicts: %{real_name}-mssql < %{base_ver}
 
 %description mssql
 The php-mssql package contains a dynamic shared object that will
@@ -665,6 +690,7 @@ Provides: %{name}-embedded-devel = %{version}-%{release}
 Provides: %{name}-embedded-devel = %{version}-%{release}
 Provides: %{real_name}-embedded-devel = %{version}-%{release}
 Provides: %{real_name}-embedded-devel = %{version}-%{release}
+Conflicts: %{real_name}-embedded < %{base_ver}
 
 %description embedded
 The php-embedded package contains a library which can be embedded
@@ -677,6 +703,7 @@ Provides: %{name}-pspell = %{version}-%{release}
 Provides: %{real_name}-pspell = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 BuildRequires: aspell-devel >= 0.50.0
+Conflicts: %{real_name}-pspell < %{base_ver}
 
 %description pspell
 The php-pspell package contains a dynamic shared object that will add
@@ -689,6 +716,7 @@ Provides: %{name}-recode = %{version}-%{release}
 Provides: %{real_name}-recode = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 BuildRequires: recode-devel
+Conflicts: %{real_name}-recode < %{base_ver}
 
 %description recode
 The php-recode package contains a dynamic shared object that will add
@@ -701,6 +729,7 @@ Provides: %{name}-intl = %{version}-%{release}
 Provides: %{real_name}-intl = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 BuildRequires: libicu-devel >= 3.6
+Conflicts: %{real_name}-intl < %{base_ver}
 
 %description intl
 The php-intl package contains a dynamic shared object that will add
@@ -713,6 +742,7 @@ Provides: %{name}-enchant = %{version}-%{release}
 Provides: %{real_name}-enchant = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 BuildRequires: enchant-devel >= 1.2.4
+Conflicts: %{real_name}-enchant < %{base_ver}
 
 %description enchant
 The php-intl package contains a dynamic shared object that will add
@@ -1463,6 +1493,9 @@ fi
 
 
 %changelog
+* Thu Sep 04 2014 Carl George <carl.george@rackspace.com> - 5.4.32-2.ius
+- Add IUS conflicts
+
 * Fri Aug 22 2014 Ben Harper <ben.harper@rackspace.com> - 5.4.32-1.ius
 - Latest upstream source
 
