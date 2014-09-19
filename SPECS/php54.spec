@@ -36,8 +36,8 @@
 
 Summary: PHP scripting language for creating dynamic web sites
 Name: %{name}
-Version: 5.4.32
-Release: 2.ius%{?dist}
+Version: 5.4.33
+Release: 1.ius%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://www.php.net/
@@ -76,8 +76,7 @@ Patch51: php-5.4.18-bison.patch
 
 # Fixes for tests
 
-
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+%{?el5:BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)}
 
 BuildRequires: bzip2-devel, curl-devel >= 7.9, db4-devel, gmp-devel
 BuildRequires: httpd-devel >= 2.0.46-1, pam-devel
@@ -97,7 +96,6 @@ BuildRequires: libzip-devel >= 0.10
 %endif
 
 Obsoletes: %{name}-dbg, php3, phpfi, stronghold-php, %{name}-zts < 5.3.7
-
 
 Provides: %{name}-zts = %{version}-%{release}
 Provides: %{real_name}-zts = %{version}-%{release}
@@ -1166,7 +1164,7 @@ unset NO_INTERACTION REPORT_EXIT_STATUS MALLOC_CHECK_
 %endif
 
 %install
-[ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
+%{?el5:%{__rm} -rf %{buildroot}}
 
 # Install the extensions for the ZTS version
 make -C build-ztscli install \
@@ -1356,7 +1354,7 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/php/modules/*.a \
 rm -f README.{Zeus,QNX,CVS-RULES}
 
 %clean
-[ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
+%{?el5:%{__rm} -rf %{buildroot}}
 rm files.* macros.php
 
 %if %{with_fpm}
@@ -1383,7 +1381,6 @@ fi
 %postun embedded -p /sbin/ldconfig
 
 %files
-%defattr(-,root,root)
 %{_libdir}/httpd/modules/libphp5.so
 %{_libdir}/httpd/modules/libphp5-zts.so
 %attr(0770,root,apache) %dir %{_localstatedir}/lib/php/session
@@ -1391,7 +1388,6 @@ fi
 %{contentdir}/icons/php.gif
 
 %files common -f files.common
-%defattr(-,root,root)
 %doc CODING_STANDARDS CREDITS EXTENSIONS LICENSE NEWS README*
 %doc Zend/ZEND_* TSRM_LICENSE regex_COPYRIGHT
 %doc php.ini-*
@@ -1406,7 +1402,6 @@ fi
 %dir %{_datadir}/php
 
 %files cli
-%defattr(-,root,root)
 %{_bindir}/php
 %{_bindir}/php-cgi
 %{_mandir}/man1/php-cgi.1*
@@ -1422,7 +1417,6 @@ fi
 
 %if %{with_fpm}
 %files fpm
-%defattr(-,root,root)
 %doc php-fpm.conf.default
 %config(noreplace) %{_sysconfdir}/php-fpm.conf
 %config(noreplace) %{_sysconfdir}/php-fpm.d/www.conf
@@ -1440,7 +1434,6 @@ fi
 %endif
 
 %files devel
-%defattr(-,root,root)
 %{_bindir}/php-config
 %{_bindir}/zts-php-config
 %{_bindir}/zts-phpize
@@ -1454,13 +1447,11 @@ fi
 %config %{_sysconfdir}/rpm/macros.php
 
 %files embedded
-%defattr(-,root,root,-)
 %{_libdir}/libphp5.so
 %{_libdir}/libphp5-%{version}%{?rcver}.so
 
 %if 0%{?with_litespeed}
 %files litespeed
-%defattr(-,root,root)
 %{_bindir}/php-ls
 %endif
 
@@ -1474,7 +1465,6 @@ fi
 %files xmlrpc -f files.xmlrpc
 %files mbstring -f files.mbstring
 %files gd -f files.gd
-%defattr(-,root,root,-)
 %doc gd_README
 %files soap -f files.soap
 %files bcmath -f files.bcmath
@@ -1493,6 +1483,9 @@ fi
 
 
 %changelog
+* Fri Sep 19 2014 Carl George <carl.george@rackspace.com> - 5.4.33-1.ius
+- Latest upstream
+
 * Thu Sep 04 2014 Carl George <carl.george@rackspace.com> - 5.4.32-2.ius
 - Add IUS conflicts
 
