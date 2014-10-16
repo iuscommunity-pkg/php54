@@ -134,7 +134,7 @@ easy for developers to write dynamically generated web pages. PHP also
 offers built-in database integration for several commercial and
 non-commercial database management systems, so writing a
 database-enabled webpage with PHP is fairly simple. The most common
-use of PHP coding is probably as a replacement for CGI scripts. 
+use of PHP coding is probably as a replacement for CGI scripts.
 
 The php package contains the module which adds support for the PHP
 language to Apache HTTP Server.
@@ -153,7 +153,7 @@ Provides: %{real_name}-cli = %{version}-%{release}
 Conflicts: %{real_name}-cli < %{base_ver}
 
 %description cli
-The php-cli package contains the command-line interface 
+The php-cli package contains the command-line interface
 executing PHP scripts, /usr/bin/php, and the CGI interface.
 
 
