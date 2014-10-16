@@ -852,9 +852,6 @@ fi
 find . -name \*.[ch] -exec chmod 644 {} \;
 chmod 644 README.*
 
-# php-fpm configuration files for tmpfiles.d
-echo "d %{_localstatedir}/run/php-fpm 755 root root" >php-fpm.tmpfiles
-
 
 %build
 #Fix for zts see, https://bugs.php.net/bug.php?id=65460
@@ -1253,9 +1250,6 @@ install -m 755 -d $RPM_BUILD_ROOT%{_sysconfdir}/php-fpm.d
 install -m 644 %{SOURCE4} $RPM_BUILD_ROOT%{_sysconfdir}/php-fpm.conf
 install -m 644 %{SOURCE5} $RPM_BUILD_ROOT%{_sysconfdir}/php-fpm.d/www.conf
 mv $RPM_BUILD_ROOT%{_sysconfdir}/php-fpm.conf.default .
-# tmpfiles.d
-install -m 755 -d $RPM_BUILD_ROOT%{_sysconfdir}/tmpfiles.d
-install -m 644 php-fpm.tmpfiles $RPM_BUILD_ROOT%{_sysconfdir}/tmpfiles.d/php-fpm.conf
 # service
 install -m 755 -d $RPM_BUILD_ROOT%{_initrddir}
 install -m 755 %{SOURCE6} $RPM_BUILD_ROOT%{_initrddir}/php-fpm
@@ -1422,7 +1416,6 @@ fi
 %config(noreplace) %{_sysconfdir}/php-fpm.d/www.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/php-fpm
 %config(noreplace) %{_sysconfdir}/sysconfig/php-fpm
-%config(noreplace) %{_sysconfdir}/tmpfiles.d/php-fpm.conf
 %{_initrddir}/php-fpm
 %{_sbindir}/php-fpm
 %dir %{_sysconfdir}/php-fpm.d
