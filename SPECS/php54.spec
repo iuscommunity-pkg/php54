@@ -36,7 +36,7 @@
 
 Summary: PHP scripting language for creating dynamic web sites
 Name: %{name}
-Version: 5.4.33
+Version: 5.4.34
 Release: 1.ius%{?dist}
 License: PHP
 Group: Development/Languages
@@ -1476,6 +1476,9 @@ fi
 
 
 %changelog
+* Mon Oct 20 2014 Ben Harper <ben.harper@rackspace.com> - 5.4.34-1.ius
+- Latest upstream
+
 * Fri Sep 19 2014 Carl George <carl.george@rackspace.com> - 5.4.33-1.ius
 - Latest upstream
 
