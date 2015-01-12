@@ -79,7 +79,12 @@ Patch51: php-5.4.18-bison.patch
 %{?el5:BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)}
 
 BuildRequires: bzip2-devel, curl-devel >= 7.9, db4-devel, gmp-devel
-BuildRequires: httpd-devel >= 2.0.46-1, pam-devel
+BuildRequires: pam-devel
+%if 0%{?rhel} < 7
+BuildRequires: httpd-devel < 2.4
+%else
+BuildRequires: httpd-devel
+%endif
 BuildRequires: libstdc++-devel, openssl-devel
 %if 0%{?fedora} >= 11 || 0%{?rhel} >= 6
 # For Sqlite3 extension
@@ -109,7 +114,7 @@ Requires: %{name}-common = %{version}-%{release}
 # For backwards-compatibility, require php-cli for the time being:
 Requires: %{name}-cli = %{version}-%{release}
 # To ensure correct /var/lib/php/session ownership:
-Requires(pre): httpd
+Requires(pre): httpd-mmn = %{httpd_mmn}
 
 Provides: %{real_name} = %{version}-%{release}
 Provides: php54 = %{version}-%{release}
