@@ -147,14 +147,14 @@ language to Apache HTTP Server.
 %package cli
 Group: Development/Languages
 Summary: Command-line interface for PHP
-Requires: %{real_name}-common = %{version}-%{release}
-Provides: %{name}-cgi = %{version}-%{release}, php-cgi = %{version}-%{release}
-Provides: %{real_name}-cgi = %{version}-%{release}, php-cgi = %{version}-%{release}
-Provides: %{name}-pcntl, php-pcntl
-Provides: %{real_name}-pcntl, php-pcntl
-Provides: %{name}-readline, php-readline
-Provides: %{real_name}-readline, php-readline
-Provides: %{real_name}-cli = %{version}-%{release}
+Requires: %{name}-common%{?_isa} = %{version}-%{release}
+Provides: %{name}-cgi = %{version}-%{release}, %{name}-cgi%{?_isa} = %{version}-%{release}
+Provides: %{real_name}-cgi = %{version}-%{release}, %{real_name}-cgi%{?_isa} = %{version}-%{release}
+Provides: %{name}-pcntl, %{name}-pcntl%{?_isa}
+Provides: %{real_name}-pcntl, %{real_name}-pcntl%{?_isa}
+Provides: %{name}-readline, %{name}-readline%{?_isa}
+Provides: %{real_name}-readline, %{real_name}-readline%{?_isa}
+Provides: %{real_name}-cli = %{version}-%{release}, %{real_name}-cli%{?_isa} = %{version}-%{release}
 Conflicts: %{real_name}-cli < %{base_ver}
 
 %description cli
@@ -182,8 +182,7 @@ any size, especially busier sites.
 %package common
 Group: Development/Languages
 Summary: Common files for PHP
-Provides: %{name}-common = %{version}-%{release}
-Provides: %{real_name}-common = %{version}-%{release}
+Provides: %{real_name}-common = %{version}-%{release}, %{real_name}-common%{?_isa} = %{version}-%{release}
 Provides: %{name}(language) = %{version}
 Provides: %{name}(language)%{?_isa} = %{version}
 Provides: %{real_name}(language) = %{version}
