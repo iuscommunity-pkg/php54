@@ -121,7 +121,6 @@ Provides: php54 = %{version}-%{release}
 Conflicts: %{real_name} < %{base_ver}
 Conflicts: php51, php52, php53u
 
-
 # Don't provides extensions, which are not shared library, as .so
 # RPM 4.8
 %{?filter_provides_in: %filter_provides_in %{_libdir}/php/modules/.*\.so$}
@@ -171,7 +170,6 @@ Requires(post):    chkconfig
 Requires(preun):   chkconfig
 Requires(preun):   initscripts
 Requires(postun):  initscripts
-Provides: %{name}-fpm = %{version}-%{release}
 Provides: %{real_name}-fpm = %{version}-%{release}
 BuildRequires: libevent-devel >= 1.4.11
 Conflicts: %{real_name}-fpm < %{base_ver}
@@ -287,7 +285,6 @@ Group: Development/Libraries
 Summary: Files needed for building PHP extensions
 Requires: %{name} = %{version}-%{release}, autoconf, automake
 Obsoletes: %{name}-pecl-pdo-devel
-Provides: %{name}-devel = %{version}-%{release}
 Provides: %{real_name}-devel = %{version}-%{release}
 Provides: %{name}-zts-devel = %{version}-%{release}
 Provides: %{real_name}-zts-devel = %{version}-%{release}
@@ -303,7 +300,6 @@ need to install this package.
 %package imap
 Summary: A module for PHP applications that use IMAP
 Group: Development/Languages
-Provides: %{name}-imap = %{version}-%{release}
 Provides: %{real_name}-imap = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 Obsoletes: mod_php3-imap, stronghold-php-imap
@@ -322,7 +318,6 @@ and the php package.
 %package ldap
 Summary: A module for PHP applications that use LDAP
 Group: Development/Languages
-Provides: %{name}-ldap = %{version}-%{release}
 Provides: %{real_name}-ldap = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 Obsoletes: mod_php3-ldap, stronghold-php-ldap
@@ -340,7 +335,6 @@ need to install this package in addition to the php package.
 %package pdo
 Summary: A database access abstraction module for PHP applications
 Group: Development/Languages
-Provides: %{name}-pdo = %{version}-%{release}
 Provides: %{real_name}-pdo = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 Obsoletes: %{name}-pecl-pdo-sqlite, %{name}-pecl-pdo
@@ -363,7 +357,6 @@ databases.
 %package mysql
 Summary: A module for PHP applications that use MySQL databases
 Group: Development/Languages
-Provides: %{name}-mysql = %{version}-%{release}
 Provides: %{real_name}-mysql = %{version}-%{release}
 Requires: %{name}-pdo = %{version}-%{release}
 Provides: %{name}_database
@@ -389,7 +382,6 @@ this package and the php package.
 %package mysqlnd
 Summary: A module for PHP applications that use MySQL databases
 Group: Development/Languages
-Provides: %{name}-mysqlnd = %{version}-%{release}
 Provides: %{real_name}-mysqlnd = %{version}-%{release}
 Requires: %{name}-pdo = %{version}-%{release}
 Provides: %{name}_database
@@ -418,7 +410,6 @@ This package use the MySQL Native Driver
 %package pgsql
 Summary: A PostgreSQL database module for PHP
 Group: Development/Languages
-Provides: %{name}-pgsql = %{version}-%{release}
 Provides: %{real_name}-pgsql = %{version}-%{release}
 Requires: %{name}-pdo = %{version}-%{release}
 Provides: %{name}_database
@@ -441,7 +432,6 @@ php package.
 %package process
 Summary: Modules for PHP script using system process interfaces
 Group: Development/Languages
-Provides: %{name}-process = %{version}-%{release}
 Provides: %{real_name}-process = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 Provides: %{name}-posix, %{name}-posix
@@ -461,7 +451,6 @@ communication.
 
 %package odbc
 Group: Development/Languages
-Provides: %{name}-odbc = %{version}-%{release}
 Provides: %{real_name}-odbc = %{version}-%{release}
 Requires: %{name}-pdo = %{version}-%{release}
 Summary: A module for PHP applications that use ODBC databases
@@ -484,7 +473,6 @@ package.
 
 %package soap
 Group: Development/Languages
-Provides: %{name}-soap = %{version}-%{release}
 Provides: %{real_name}-soap = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 Summary: A module for PHP applications that use the SOAP protocol
@@ -526,7 +514,6 @@ License.
 %package snmp
 Summary: A module for PHP applications that query SNMP-managed devices
 Group: Development/Languages
-Provides: %{name}-snmp = %{version}-%{release}
 Provides: %{real_name}-snmp = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}, net-snmp
 BuildRequires: net-snmp-devel
@@ -541,7 +528,6 @@ will need to install this package and the php package.
 %package xml
 Summary: A module for PHP applications which use XML
 Group: Development/Languages
-Provides: %{name}-xml = %{version}-%{release}
 Provides: %{real_name}-xml = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 Obsoletes: %{name}-domxml, %{name}-dom
@@ -568,7 +554,6 @@ and performing XSL transformations on XML documents.
 %package xmlrpc
 Summary: A module for PHP applications which use the XML-RPC protocol
 Group: Development/Languages
-Provides: %{name}-xmlrpc = %{version}-%{release}
 Provides: %{real_name}-xmlrpc = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 Conflicts: %{real_name}-xmlrpc < %{base_ver}
@@ -580,7 +565,6 @@ support for the XML-RPC protocol to PHP.
 %package mbstring
 Summary: A module for PHP applications which need multi-byte string handling
 Group: Development/Languages
-Provides: %{name}-mbstring = %{version}-%{release}
 Provides: %{real_name}-mbstring = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 Conflicts: %{real_name}-mbstring < %{base_ver}
@@ -592,7 +576,6 @@ support for multi-byte string handling to PHP.
 %package gd
 Summary: A module for PHP applications for using the gd graphics library
 Group: Development/Languages
-Provides: %{name}-gd = %{version}-%{release}
 Provides: %{real_name}-gd = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 # Required to build the bundled GD library
@@ -607,7 +590,6 @@ support for using the gd graphics library to PHP.
 %package bcmath
 Summary: A module for PHP applications for using the bcmath library
 Group: Development/Languages
-Provides: %{name}-bcmath = %{version}-%{release}
 Provides: %{real_name}-bcmath = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 Conflicts: %{real_name}-bcmath < %{base_ver}
@@ -619,7 +601,6 @@ support for using the bcmath library to PHP.
 %package dba
 Summary: A database abstraction layer module for PHP applications
 Group: Development/Languages
-Provides: %{name}-dba = %{version}-%{release}
 Provides: %{real_name}-dba = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 Conflicts: %{real_name}-dba < %{base_ver}
@@ -634,7 +615,6 @@ Summary: API for the Litespeed web server
 Group: Development/Languages
 Requires: %{name}-common = %{version}-%{release}
 Provides: %{real_name}-litespeed = %{version}-%{release}
-Provides: %{name}-litespeed = %{version}-%{release}
 Conflicts: %{real_name}-litespeed < %{base_ver}
 
 %description litespeed
@@ -644,7 +624,6 @@ The php-litespeed package contains the binary used by the Litespeed web server.
 %package mcrypt
 Summary: Standard PHP module provides mcrypt library support
 Group: Development/Languages
-Provides: %{name}-mcrypt = %{version}-%{release}
 Provides: %{real_name}-mcrypt = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 BuildRequires: libmcrypt-devel
@@ -657,7 +636,6 @@ support for using the mcrypt library to PHP.
 %package tidy
 Summary: Standard PHP module provides tidy library support
 Group: Development/Languages
-Provides: %{name}-tidy = %{version}-%{release}
 Provides: %{real_name}-tidy = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 BuildRequires: libtidy-devel
@@ -670,7 +648,6 @@ support for using the tidy library to PHP.
 %package mssql
 Summary: MSSQL database module for PHP
 Group: Development/Languages
-Provides: %{name}-mssql = %{version}-%{release}
 Provides: %{real_name}-mssql = %{version}-%{release}
 Requires: %{name}-pdo = %{version}-%{release}
 BuildRequires: freetds-devel
@@ -687,7 +664,6 @@ database server which supports TDS can be accessed.
 %package embedded
 Summary: PHP library for embedding in applications
 Group: System Environment/Libraries
-Provides: %{name}-embedded = %{version}-%{release}
 Provides: %{real_name}-embedded = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 # doing a real -devel package for just the .so symlink is a bit overkill
@@ -704,7 +680,6 @@ into applications to provide PHP scripting language support.
 %package pspell
 Summary: A module for PHP applications for using pspell interfaces
 Group: System Environment/Libraries
-Provides: %{name}-pspell = %{version}-%{release}
 Provides: %{real_name}-pspell = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 BuildRequires: aspell-devel >= 0.50.0
@@ -717,7 +692,6 @@ support for using the pspell library to PHP.
 %package recode
 Summary: A module for PHP applications for using the recode library
 Group: System Environment/Libraries
-Provides: %{name}-recode = %{version}-%{release}
 Provides: %{real_name}-recode = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 BuildRequires: recode-devel
@@ -730,7 +704,6 @@ support for using the recode library to PHP.
 %package intl
 Summary: Internationalization extension for PHP applications
 Group: System Environment/Libraries
-Provides: %{name}-intl = %{version}-%{release}
 Provides: %{real_name}-intl = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 BuildRequires: libicu-devel >= 3.6
@@ -743,7 +716,6 @@ support for using the ICU library to PHP.
 %package enchant
 Summary: Human Language and Character Encoding Support
 Group: System Environment/Libraries
-Provides: %{name}-enchant = %{version}-%{release}
 Provides: %{real_name}-enchant = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 BuildRequires: enchant-devel >= 1.2.4
