@@ -99,7 +99,7 @@ BuildRequires: bison
 BuildRequires: libzip-devel >= 0.10
 %endif
 
-Obsoletes: %{name}-dbg, php3, phpfi, stronghold-php, %{name}-zts < 5.3.7
+Obsoletes: %{name}-dbg, %{name}-zts < 5.3.7
 
 Provides: %{name}-zts = %{version}-%{release}
 Provides: %{real_name}-zts = %{version}-%{release}
@@ -270,7 +270,6 @@ Provides: %{real_name}-pecl-zip = %{zipver}
 Provides: %{name}-pecl(zip) = %{zipver}
 Provides: %{real_name}-pecl(zip) = %{zipver}
 Obsoletes: %{name}-pecl-zip
-Obsoletes: %{real_name}-pecl-zip
 %endif
 Provides: %{name}-zlib, %{name}-zlib
 Provides: %{real_name}-zlib, %{real_name}-zlib
@@ -306,7 +305,6 @@ Group: Development/Languages
 Provides: %{real_name}-imap = %{version}-%{release}
 Requires: %{name}-common%{?_isa} = %{version}-%{release}
 Provides: config(%{real_name}-imap) = %{version}-%{release}
-Obsoletes: mod_php3-imap, stronghold-php-imap
 BuildRequires: krb5-devel, openssl-devel, libc-client-devel
 Conflicts: %{real_name}-imap < %{base_ver}
 
@@ -325,7 +323,6 @@ Group: Development/Languages
 Provides: %{real_name}-ldap = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 Provides: config(%{real_name}-ldap) = %{version}-%{release}
-Obsoletes: mod_php3-ldap, stronghold-php-ldap
 BuildRequires: cyrus-sasl-devel, openldap-devel, openssl-devel
 Conflicts: %{real_name}-ldap < %{base_ver}
 
@@ -374,7 +371,6 @@ Provides: %{real_name}_database
 Provides: %{real_name}-mysqli = %{version}-%{release}
 Provides: %{real_name}-mysqli = %{version}-%{release}
 Provides: %{real_name}-pdo_mysql, %{real_name}-pdo_mysql
-Obsoletes: mod_php3-mysql, stronghold-php-mysql
 BuildRequires: mysql-devel >= 4.1.0
 Conflicts: %{name}-mysqlnd
 Conflicts: %{real_name}-mysql < %{base_ver}
@@ -425,7 +421,6 @@ Provides: %{name}_database
 Provides: %{name}-pdo_pgsql, %{name}-pdo_pgsql
 Provides: %{real_name}_database
 Provides: %{real_name}-pdo_pgsql, %{real_name}-pdo_pgsql
-Obsoletes: mod_php3-pgsql, stronghold-php-pgsql
 BuildRequires: krb5-devel, openssl-devel, postgresql-devel
 Conflicts: %{real_name}-pgsql < %{base_ver}
 
@@ -468,7 +463,6 @@ Provides: %{name}_database
 Provides: %{name}-pdo_odbc, %{name}-pdo_odbc
 Provides: %{real_name}_database
 Provides: %{real_name}-pdo_odbc, %{real_name}-pdo_odbc
-Obsoletes: stronghold-php-odbc
 Provides: config(%{real_name}-odbc) = %{version}-%{release}
 BuildRequires: unixODBC-devel
 Conflicts: %{real_name}-odbc < %{base_ver}
