@@ -746,7 +746,7 @@ BuildRequires: enchant-devel >= 1.2.4
 Conflicts: %{real_name}-enchant < %{base_ver}
 
 %description enchant
-The php-intl package contains a dynamic shared object that will add
+The php-enchant package contains a dynamic shared object that will add
 support for using the enchant library to PHP.
 
 
