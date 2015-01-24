@@ -41,7 +41,7 @@ License: PHP
 Group: Development/Languages
 URL: http://www.php.net/
 
-Source0: http://www.php.net/distributions/%{real_name}-%{version}%{?rcver}.tar.bz2
+Source0: http://www.php.net/distributions/%{real_name}-%{version}.tar.bz2
 Source1: php.conf
 Source2: php.ini
 Source3: macros.php
@@ -751,7 +751,7 @@ support for using the enchant library to PHP.
 
 
 %prep
-%setup -q -n php-%{version}%{?rcver}
+%setup -q -n php-%{version}
 
 %patch5 -p1 -b .includedir
 %patch6 -p1 -b .embed
@@ -797,9 +797,9 @@ rm -f ext/standard/tests/file/bug22414.phpt \
 
 # Safety check for API version change.
 pver=$(awk '$2=="PHP_VERSION"{gsub(/\"/,"",$3);print$3}' main/php_version.h)
-if test "x${pver}" != "x%{version}%{?rcver}"; then
-   : Error: Upstream PHP version is now ${pver}, expecting %{version}%{?rcver}.
-   : Update the version/rcver macros and rebuild.
+if test "x${pver}" != "x%{version}"; then
+   : Error: Upstream PHP version is now ${pver}, expecting %{version}.
+   : Update the version macros and rebuild.
    exit 1
 fi
 
@@ -1444,7 +1444,7 @@ fi
 
 %files embedded
 %{_libdir}/libphp5.so
-%{_libdir}/libphp5-%{version}%{?rcver}.so
+%{_libdir}/libphp5-%{version}.so
 
 %if 0%{?with_litespeed}
 %files litespeed
