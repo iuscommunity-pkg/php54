@@ -496,20 +496,20 @@ The php-soap package contains a dynamic shared object that will add
 support to PHP for using the SOAP web services protocol.
 
 %package interbase
-Summary: 	A module for PHP applications that use Interbase/Firebird databases
-Group: 		Development/Languages
+Summary: A module for PHP applications that use Interbase/Firebird databases
+Group: Development/Languages
 BuildRequires:  firebird-devel
-Provides: 	%{name}-interbase = %{version}-%{release}
-Provides: 	%{real_name}-interbase = %{version}-%{release}
-Requires: 	%{name}-pdo = %{version}-%{release}
-Provides: 	%{name}_database
-Provides: 	%{name}-firebird, %{name}-firebird
-Provides: 	%{name}-pdo_firebird, %{name}-pdo_firebird
-Provides: 	%{real_name}_database
-Provides: 	%{real_name}-firebird, %{real_name}-firebird
-Provides: 	%{real_name}-pdo_firebird, %{real_name}-pdo_firebird
+Provides: %{name}-interbase = %{version}-%{release}
+Provides: %{real_name}-interbase = %{version}-%{release}
+Requires: %{name}-pdo = %{version}-%{release}
+Provides: %{name}_database
+Provides: %{name}-firebird, %{name}-firebird
+Provides: %{name}-pdo_firebird, %{name}-pdo_firebird
+Provides: %{real_name}_database
+Provides: %{real_name}-firebird, %{real_name}-firebird
+Provides: %{real_name}-pdo_firebird, %{real_name}-pdo_firebird
 Provides: config(%{real_name}-interbase) = %{version}-%{release}
-Conflicts:      %{real_name}-interbase < %{base_ver}
+Conflicts: %{real_name}-interbase < %{base_ver}
 
 %description interbase
 The php-interbase package contains a dynamic shared object that will add
@@ -899,43 +899,43 @@ build() {
 # mkdir Zend && cp ../Zend/zend_{language,ini}_{parser,scanner}.[ch] Zend
 ln -sf ../configure
 %configure \
-	--cache-file=../config.cache \
+        --cache-file=../config.cache \
         --with-libdir=%{_lib} \
-	--with-config-file-path=%{_sysconfdir} \
-	--with-config-file-scan-dir=%{_sysconfdir}/php.d \
-	--disable-debug \
-	--with-pic \
-	--disable-rpath \
-	--without-pear \
-	--with-bz2 \
-	--with-exec-dir=%{_bindir} \
-	--with-freetype-dir=%{_prefix} \
-	--with-png-dir=%{_prefix} \
-	--with-xpm-dir=%{_prefix} \
-	--enable-gd-native-ttf \
-	--with-t1lib=%{_prefix} \
-	--without-gdbm \
-	--with-gettext \
-	--with-gmp \
-	--with-iconv \
-	--with-jpeg-dir=%{_prefix} \
-	--with-openssl \
+        --with-config-file-path=%{_sysconfdir} \
+        --with-config-file-scan-dir=%{_sysconfdir}/php.d \
+        --disable-debug \
+        --with-pic \
+        --disable-rpath \
+        --without-pear \
+        --with-bz2 \
+        --with-exec-dir=%{_bindir} \
+        --with-freetype-dir=%{_prefix} \
+        --with-png-dir=%{_prefix} \
+        --with-xpm-dir=%{_prefix} \
+        --enable-gd-native-ttf \
+        --with-t1lib=%{_prefix} \
+        --without-gdbm \
+        --with-gettext \
+        --with-gmp \
+        --with-iconv \
+        --with-jpeg-dir=%{_prefix} \
+        --with-openssl \
         --with-pcre-regex \
-	--with-zlib \
-	--with-layout=GNU \
-	--enable-exif \
-	--enable-ftp \
-	--enable-magic-quotes \
-	--enable-sockets \
-	--with-kerberos \
-	--enable-ucd-snmp-hack \
-	--enable-shmop \
-	--enable-calendar \
+        --with-zlib \
+        --with-layout=GNU \
+        --enable-exif \
+        --enable-ftp \
+        --enable-magic-quotes \
+        --enable-sockets \
+        --with-kerberos \
+        --enable-ucd-snmp-hack \
+        --enable-shmop \
+        --enable-calendar \
         --with-libxml-dir=%{_prefix} \
-	--enable-xml \
+        --enable-xml \
         --with-system-tzdata \
-	--with-mhash \
-	$* 
+        --with-mhash \
+        $*
 if test $? != 0; then 
   tail -500 config.log
   : configure failed
