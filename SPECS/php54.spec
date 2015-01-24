@@ -171,6 +171,7 @@ Requires(preun):   chkconfig
 Requires(preun):   initscripts
 Requires(postun):  initscripts
 Provides: %{real_name}-fpm = %{version}-%{release}
+Provides: config(%{real_name}-fpm) = %{version}-%{release}
 BuildRequires: libevent-devel >= 1.4.11
 Conflicts: %{real_name}-fpm < %{base_ver}
 
@@ -183,6 +184,7 @@ any size, especially busier sites.
 %package common
 Group: Development/Languages
 Summary: Common files for PHP
+Provides: config(%{real_name}-common) = %{version}-%{release}
 Provides: %{real_name}-common = %{version}-%{release}, %{real_name}-common%{?_isa} = %{version}-%{release}
 Provides: %{name}(language) = %{version}
 Provides: %{name}(language)%{?_isa} = %{version}
@@ -286,6 +288,7 @@ Summary: Files needed for building PHP extensions
 Requires: %{name} = %{version}-%{release}, autoconf, automake
 Obsoletes: %{name}-pecl-pdo-devel
 Provides: %{real_name}-devel = %{version}-%{release}
+Provides: config(%{real_name}-devel) = %{version}-%{release}
 Provides: %{name}-zts-devel = %{version}-%{release}
 Provides: %{real_name}-zts-devel = %{version}-%{release}
 Provides: %{name}-zts-devel = %{version}-%{release}
@@ -302,6 +305,7 @@ Summary: A module for PHP applications that use IMAP
 Group: Development/Languages
 Provides: %{real_name}-imap = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
+Provides: config(%{real_name}-imap) = %{version}-%{release}
 Obsoletes: mod_php3-imap, stronghold-php-imap
 BuildRequires: krb5-devel, openssl-devel, libc-client-devel
 Conflicts: %{real_name}-imap < %{base_ver}
@@ -320,6 +324,7 @@ Summary: A module for PHP applications that use LDAP
 Group: Development/Languages
 Provides: %{real_name}-ldap = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
+Provides: config(%{real_name}-ldap) = %{version}-%{release}
 Obsoletes: mod_php3-ldap, stronghold-php-ldap
 BuildRequires: cyrus-sasl-devel, openldap-devel, openssl-devel
 Conflicts: %{real_name}-ldap < %{base_ver}
@@ -346,6 +351,7 @@ Provides: %{name}-pdo_sqlite, %{name}-pdo_sqlite
 Provides: %{real_name}-pdo-abi = %{pdover}
 Provides: %{real_name}-sqlite3, %{real_name}-sqlite3
 Provides: %{real_name}-pdo_sqlite, %{real_name}-pdo_sqlite
+Provides: config(%{real_name}-pdo) = %{version}-%{release}
 Conflicts: %{real_name}-pdo < %{base_ver}
 
 %description pdo
@@ -359,6 +365,7 @@ Summary: A module for PHP applications that use MySQL databases
 Group: Development/Languages
 Provides: %{real_name}-mysql = %{version}-%{release}
 Requires: %{name}-pdo = %{version}-%{release}
+Provides: config(%{real_name}-mysql) = %{version}-%{release}
 Provides: %{name}_database
 Provides: %{name}-mysqli = %{version}-%{release}
 Provides: %{name}-mysqli = %{version}-%{release}
@@ -384,6 +391,7 @@ Summary: A module for PHP applications that use MySQL databases
 Group: Development/Languages
 Provides: %{real_name}-mysqlnd = %{version}-%{release}
 Requires: %{name}-pdo = %{version}-%{release}
+Provides: config(%{real_name}-mysqlnd) = %{version}-%{release}
 Provides: %{name}_database
 Provides: %{name}-mysql = %{version}-%{release}
 Provides: %{name}-mysql = %{version}-%{release}
@@ -412,6 +420,7 @@ Summary: A PostgreSQL database module for PHP
 Group: Development/Languages
 Provides: %{real_name}-pgsql = %{version}-%{release}
 Requires: %{name}-pdo = %{version}-%{release}
+Provides: config(%{real_name}-pgsql) = %{version}-%{release}
 Provides: %{name}_database
 Provides: %{name}-pdo_pgsql, %{name}-pdo_pgsql
 Provides: %{real_name}_database
@@ -442,6 +451,7 @@ Provides: %{real_name}-posix, %{real_name}-posix
 Provides: %{real_name}-sysvsem, %{real_name}-sysvsem
 Provides: %{real_name}-sysvshm, %{real_name}-sysvshm
 Provides: %{real_name}-sysvmsg, %{real_name}-sysvmsg
+Provides: config(%{real_name}-process) = %{version}-%{release}
 Conflicts: %{real_name}-process < %{base_ver}
 
 %description process
@@ -459,6 +469,7 @@ Provides: %{name}-pdo_odbc, %{name}-pdo_odbc
 Provides: %{real_name}_database
 Provides: %{real_name}-pdo_odbc, %{real_name}-pdo_odbc
 Obsoletes: stronghold-php-odbc
+Provides: config(%{real_name}-odbc) = %{version}-%{release}
 BuildRequires: unixODBC-devel
 Conflicts: %{real_name}-odbc < %{base_ver}
 
@@ -476,6 +487,7 @@ Group: Development/Languages
 Provides: %{real_name}-soap = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
 Summary: A module for PHP applications that use the SOAP protocol
+Provides: config(%{real_name}-soap) = %{version}-%{release}
 BuildRequires: libxml2-devel
 Conflicts: %{real_name}-soap < %{base_ver}
 
@@ -496,6 +508,7 @@ Provides: 	%{name}-pdo_firebird, %{name}-pdo_firebird
 Provides: 	%{real_name}_database
 Provides: 	%{real_name}-firebird, %{real_name}-firebird
 Provides: 	%{real_name}-pdo_firebird, %{real_name}-pdo_firebird
+Provides: config(%{real_name}-interbase) = %{version}-%{release}
 Conflicts:      %{real_name}-interbase < %{base_ver}
 
 %description interbase
@@ -516,6 +529,7 @@ Summary: A module for PHP applications that query SNMP-managed devices
 Group: Development/Languages
 Provides: %{real_name}-snmp = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}, net-snmp
+Provides: config(%{real_name}-snmp) = %{version}-%{release}
 BuildRequires: net-snmp-devel
 Conflicts: %{real_name}-snmp < %{base_ver}
 
@@ -530,6 +544,7 @@ Summary: A module for PHP applications which use XML
 Group: Development/Languages
 Provides: %{real_name}-xml = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
+Provides: config(%{real_name}-xml) = %{version}-%{release}
 Obsoletes: %{name}-domxml, %{name}-dom
 Provides: %{name}-dom, %{name}-dom
 Provides: %{name}-xsl, %{name}-xsl
@@ -556,6 +571,7 @@ Summary: A module for PHP applications which use the XML-RPC protocol
 Group: Development/Languages
 Provides: %{real_name}-xmlrpc = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
+Provides: config(%{real_name}-xmlrpc) = %{version}-%{release}
 Conflicts: %{real_name}-xmlrpc < %{base_ver}
 
 %description xmlrpc
@@ -567,6 +583,7 @@ Summary: A module for PHP applications which need multi-byte string handling
 Group: Development/Languages
 Provides: %{real_name}-mbstring = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
+Provides: config(%{real_name}-mbstring) = %{version}-%{release}
 Conflicts: %{real_name}-mbstring < %{base_ver}
 
 %description mbstring
@@ -578,6 +595,7 @@ Summary: A module for PHP applications for using the gd graphics library
 Group: Development/Languages
 Provides: %{real_name}-gd = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
+Provides: config(%{real_name}-gd) = %{version}-%{release}
 # Required to build the bundled GD library
 BuildRequires: libjpeg-devel, libpng-devel, freetype-devel
 BuildRequires: libXpm-devel, t1lib-devel
@@ -592,6 +610,7 @@ Summary: A module for PHP applications for using the bcmath library
 Group: Development/Languages
 Provides: %{real_name}-bcmath = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
+Provides: config(%{real_name}-bcmath) = %{version}-%{release}
 Conflicts: %{real_name}-bcmath < %{base_ver}
 
 %description bcmath
@@ -603,6 +622,7 @@ Summary: A database abstraction layer module for PHP applications
 Group: Development/Languages
 Provides: %{real_name}-dba = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
+Provides: config(%{real_name}-dba) = %{version}-%{release}
 Conflicts: %{real_name}-dba < %{base_ver}
 
 %description dba
@@ -614,6 +634,7 @@ support for using the DBA database abstraction layer to PHP.
 Summary: API for the Litespeed web server
 Group: Development/Languages
 Requires: %{name}-common = %{version}-%{release}
+Provides: config(%{real_name}-litespeed) = %{version}-%{release}
 Provides: %{real_name}-litespeed = %{version}-%{release}
 Conflicts: %{real_name}-litespeed < %{base_ver}
 
@@ -626,6 +647,7 @@ Summary: Standard PHP module provides mcrypt library support
 Group: Development/Languages
 Provides: %{real_name}-mcrypt = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
+Provides: config(%{real_name}-mcrypt) = %{version}-%{release}
 BuildRequires: libmcrypt-devel
 Conflicts: %{real_name}-mcrypt < %{base_ver}
 
@@ -638,6 +660,7 @@ Summary: Standard PHP module provides tidy library support
 Group: Development/Languages
 Provides: %{real_name}-tidy = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
+Provides: config(%{real_name}-tidy) = %{version}-%{release}
 BuildRequires: libtidy-devel
 Conflicts: %{real_name}-tidy < %{base_ver}
 
@@ -653,6 +676,7 @@ Requires: %{name}-pdo = %{version}-%{release}
 BuildRequires: freetds-devel
 Provides: %{name}-pdo_dblib, %{name}-pdo_dblib
 Provides: %{real_name}-pdo_dblib, %{real_name}-pdo_dblib
+Provides: config(%{real_name}-mssql) = %{version}-%{release}
 Conflicts: %{real_name}-mssql < %{base_ver}
 
 %description mssql
@@ -682,6 +706,7 @@ Summary: A module for PHP applications for using pspell interfaces
 Group: System Environment/Libraries
 Provides: %{real_name}-pspell = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
+Provides: config(%{real_name}-pspell) = %{version}-%{release}
 BuildRequires: aspell-devel >= 0.50.0
 Conflicts: %{real_name}-pspell < %{base_ver}
 
@@ -694,6 +719,7 @@ Summary: A module for PHP applications for using the recode library
 Group: System Environment/Libraries
 Provides: %{real_name}-recode = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
+Provides: config(%{real_name}-recode) = %{version}-%{release}
 BuildRequires: recode-devel
 Conflicts: %{real_name}-recode < %{base_ver}
 
@@ -706,6 +732,7 @@ Summary: Internationalization extension for PHP applications
 Group: System Environment/Libraries
 Provides: %{real_name}-intl = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
+Provides: config(%{real_name}-intl) = %{version}-%{release}
 BuildRequires: libicu-devel >= 3.6
 Conflicts: %{real_name}-intl < %{base_ver}
 
@@ -718,6 +745,7 @@ Summary: Human Language and Character Encoding Support
 Group: System Environment/Libraries
 Provides: %{real_name}-enchant = %{version}-%{release}
 Requires: %{name}-common = %{version}-%{release}
+Provides: config(%{real_name}-enchant) = %{version}-%{release}
 BuildRequires: enchant-devel >= 1.2.4
 Conflicts: %{real_name}-enchant < %{base_ver}
 
