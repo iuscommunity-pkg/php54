@@ -101,22 +101,18 @@ BuildRequires: libzip-devel >= 0.10
 
 Obsoletes: %{name}-dbg, %{name}-zts < 5.3.7
 
-Provides: %{name}-zts = %{version}-%{release}
-Provides: %{real_name}-zts = %{version}-%{release}
-Provides: %{name}-zts = %{version}-%{release}
-Provides: %{real_name}-zts = %{version}-%{release}
+Provides: %{name}-zts = %{version}-%{release}, %{name}-zts%{?_isa} = %{version}-%{release}
+Provides: %{real_name}-zts = %{version}-%{release}, %{real_name}-zts%{?_isa} = %{version}-%{release}
 
 Requires: httpd-mmn = %{httpd_mmn}
 Provides: mod_%{real_name} = %{version}-%{release}
 Provides: mod_%{name} = %{version}-%{release}
 Requires: %{name}-common%{?_isa} = %{version}-%{release}
+Provides: %{real_name} = %{version}-%{release}, %{real_name}%{?_isa} = %{version}-%{release}
 # For backwards-compatibility, require php-cli for the time being:
 Requires: %{name}-cli%{?_isa} = %{version}-%{release}
 # To ensure correct /var/lib/php/session ownership:
 Requires(pre): httpd-mmn = %{httpd_mmn}
-
-Provides: %{real_name} = %{version}-%{release}
-Provides: php54 = %{version}-%{release}
 
 Conflicts: %{real_name} < %{base_ver}
 Conflicts: php51, php52, php53u
@@ -170,7 +166,7 @@ Requires(post):    chkconfig
 Requires(preun):   chkconfig
 Requires(preun):   initscripts
 Requires(postun):  initscripts
-Provides: %{real_name}-fpm = %{version}-%{release}
+Provides: %{real_name}-fpm = %{version}-%{release}, %{real_name}-fpm%{?_isa} = %{version}-%{release}
 Provides: config(%{real_name}-fpm) = %{version}-%{release}
 BuildRequires: libevent-devel >= 1.4.11
 Conflicts: %{real_name}-fpm < %{base_ver}
@@ -186,13 +182,9 @@ Group: Development/Languages
 Summary: Common files for PHP
 Provides: config(%{real_name}-common) = %{version}-%{release}
 Provides: %{real_name}-common = %{version}-%{release}, %{real_name}-common%{?_isa} = %{version}-%{release}
-Provides: %{name}(language) = %{version}
-Provides: %{name}(language)%{?_isa} = %{version}
-Provides: %{real_name}(language) = %{version}
-Provides: %{real_name}(language)%{?_isa} = %{version}
-# ABI/API check - Arch specific
 Provides: %{name}-api = %{apiver}, %{name}-zend-abi = %{zendver}
 Provides: %{name}(api) = %{apiver}, %{name}(zend-abi) = %{zendver}
+Provides: %{name}(language) = %{version}, %{name}(language)%{?_isa} = %{version}
 # Provides for all builtin/shared modules:
 Provides: %{name}-bz2
 Provides: %{name}-calendar
@@ -226,9 +218,17 @@ Provides: %{name}-spl
 Provides: %{name}-tokenizer
 Provides: %{name}-filter
 Provides: %{name}-filter%{?_isa}
-# ABI/API check - Arch specific
+%if %{with_zip}
+Provides: %{name}-zip, %{name}-zip%{?_isa}
+Provides: %{name}-pecl-zip = %{zipver}
+Provides: %{name}-pecl(zip) = %{zipver}
+Obsoletes: %{name}-pecl-zip
+%endif
+Provides: %{name}-zlib, %{name}-zlib%{?_isa}
+
 Provides: %{real_name}-api = %{apiver}, %{real_name}-zend-abi = %{zendver}
 Provides: %{real_name}(api) = %{apiver}, %{real_name}(zend-abi) = %{zendver}
+Provides: %{real_name}(language) = %{version}, %{real_name}(language)%{?_isa} = %{version}
 # Provides for all builtin/shared modules:
 Provides: %{real_name}-bz2
 Provides: %{real_name}-calendar
@@ -263,16 +263,11 @@ Provides: %{real_name}-tokenizer
 Provides: %{real_name}-filter
 Provides: %{real_name}-filter%{?_isa}
 %if %{with_zip}
-Provides: %{name}-zip
-Provides: %{real_name}-zip
-Provides: %{name}-pecl-zip = %{zipver}
+Provides: %{real_name}-zip, %{real_name}-zip%{?_isa}
 Provides: %{real_name}-pecl-zip = %{zipver}
-Provides: %{name}-pecl(zip) = %{zipver}
 Provides: %{real_name}-pecl(zip) = %{zipver}
-Obsoletes: %{name}-pecl-zip
 %endif
-Provides: %{name}-zlib, %{name}-zlib
-Provides: %{real_name}-zlib, %{real_name}-zlib
+Provides: %{real_name}-zlib, %{real_name}-zlib%{?_isa}
 Obsoletes: %{name}-openssl, %{name}-pecl-json, %{name}-json, %{name}-pecl-phar, %{name}-pecl-Fileinfo
 Obsoletes: %{name}-mhash < 5.3.0
 Conflicts: %{real_name}-common < %{base_ver}
@@ -286,12 +281,10 @@ Group: Development/Libraries
 Summary: Files needed for building PHP extensions
 Requires: %{name}-cli%{?_isa} = %{version}-%{release}, autoconf, automake
 Obsoletes: %{name}-pecl-pdo-devel
-Provides: %{real_name}-devel = %{version}-%{release}
+Provides: %{real_name}-devel = %{version}-%{release}, %{real_name}-devel%{?_isa} = %{version}-%{release}
 Provides: config(%{real_name}-devel) = %{version}-%{release}
-Provides: %{name}-zts-devel = %{version}-%{release}
-Provides: %{real_name}-zts-devel = %{version}-%{release}
-Provides: %{name}-zts-devel = %{version}-%{release}
-Provides: %{real_name}-zts-devel = %{version}-%{release}
+Provides: %{name}-zts-devel = %{version}-%{release}, %{name}-zts-devel%{?_isa} = %{version}-%{release}
+Provides: %{real_name}-zts-devel = %{version}-%{release}, %{real_name}-zts-devel%{?_isa} = %{version}-%{release}
 Conflicts: %{real_name}-devel < %{base_ver}
 
 %description devel
@@ -302,9 +295,9 @@ need to install this package.
 %package imap
 Summary: A module for PHP applications that use IMAP
 Group: Development/Languages
-Provides: %{real_name}-imap = %{version}-%{release}
 Requires: %{name}-common%{?_isa} = %{version}-%{release}
 Provides: config(%{real_name}-imap) = %{version}-%{release}
+Provides: %{real_name}-imap = %{version}-%{release}, %{real_name}-imap%{?_isa} = %{version}-%{release}
 BuildRequires: krb5-devel, openssl-devel, libc-client-devel
 Conflicts: %{real_name}-imap < %{base_ver}
 
@@ -320,9 +313,9 @@ and the php package.
 %package ldap
 Summary: A module for PHP applications that use LDAP
 Group: Development/Languages
-Provides: %{real_name}-ldap = %{version}-%{release}
-Requires: %{name}-common = %{version}-%{release}
+Requires: %{name}-common%{?_isa} = %{version}-%{release}
 Provides: config(%{real_name}-ldap) = %{version}-%{release}
+Provides: %{real_name}-ldap = %{version}-%{release}, %{real_name}-ldap%{?_isa} = %{version}-%{release}
 BuildRequires: cyrus-sasl-devel, openldap-devel, openssl-devel
 Conflicts: %{real_name}-ldap < %{base_ver}
 
@@ -337,18 +330,16 @@ need to install this package in addition to the php package.
 %package pdo
 Summary: A database access abstraction module for PHP applications
 Group: Development/Languages
-Provides: %{real_name}-pdo = %{version}-%{release}
 Requires: %{name}-common%{?_isa} = %{version}-%{release}
 Obsoletes: %{name}-pecl-pdo-sqlite, %{name}-pecl-pdo
-# ABI/API check - Arch specific
 Provides: %{name}-pdo-abi = %{pdover}
-Provides: %{name}-sqlite3, %{name}-sqlite3
-Provides: %{name}-pdo_sqlite, %{name}-pdo_sqlite
-# ABI/API check - Arch specific
+Provides: %{name}-sqlite3, %{name}-sqlite3%{?_isa}
+Provides: %{name}-pdo_sqlite, %{name}-pdo_sqlite%{?_isa}
 Provides: %{real_name}-pdo-abi = %{pdover}
-Provides: %{real_name}-sqlite3, %{real_name}-sqlite3
-Provides: %{real_name}-pdo_sqlite, %{real_name}-pdo_sqlite
+Provides: %{real_name}-sqlite3, %{real_name}-sqlite3%{?_isa}
+Provides: %{real_name}-pdo_sqlite, %{real_name}-pdo_sqlite%{?_isa}
 Provides: config(%{real_name}-pdo) = %{version}-%{release}
+Provides: %{real_name}-pdo = %{version}-%{release}, %{real_name}-pdo%{?_isa} = %{version}-%{release}
 Conflicts: %{real_name}-pdo < %{base_ver}
 
 %description pdo
@@ -360,17 +351,15 @@ databases.
 %package mysql
 Summary: A module for PHP applications that use MySQL databases
 Group: Development/Languages
-Provides: %{real_name}-mysql = %{version}-%{release}
 Requires: %{name}-pdo%{?_isa} = %{version}-%{release}
 Provides: config(%{real_name}-mysql) = %{version}-%{release}
+Provides: %{real_name}-mysql = %{version}-%{release}, %{real_name}-mysql%{?_isa} = %{version}-%{release}
 Provides: %{name}_database
-Provides: %{name}-mysqli = %{version}-%{release}
-Provides: %{name}-mysqli = %{version}-%{release}
-Provides: %{name}-pdo_mysql, %{name}-pdo_mysql
 Provides: %{real_name}_database
-Provides: %{real_name}-mysqli = %{version}-%{release}
-Provides: %{real_name}-mysqli = %{version}-%{release}
-Provides: %{real_name}-pdo_mysql, %{real_name}-pdo_mysql
+Provides: %{name}-mysqli = %{version}-%{release}, %{name}-mysqli%{?_isa} = %{version}-%{release}
+Provides: %{real_name}-mysqli = %{version}-%{release}, %{real_name}-mysqli%{?_isa} = %{version}-%{release}
+Provides: %{name}-pdo_mysql, %{name}-pdo_mysql%{?_isa}
+Provides: %{real_name}-pdo_mysql, %{real_name}-pdo_mysql%{?_isa}
 BuildRequires: mysql-devel >= 4.1.0
 Conflicts: %{name}-mysqlnd
 Conflicts: %{real_name}-mysql < %{base_ver}
@@ -385,21 +374,17 @@ this package and the php package.
 %package mysqlnd
 Summary: A module for PHP applications that use MySQL databases
 Group: Development/Languages
-Provides: %{real_name}-mysqlnd = %{version}-%{release}
 Requires: %{name}-pdo%{?_isa} = %{version}-%{release}
 Provides: config(%{real_name}-mysqlnd) = %{version}-%{release}
+Provides: %{real_name}-mysqlnd = %{version}-%{release}, %{real_name}-mysqlnd%{?_isa} = %{version}-%{release}
 Provides: %{name}_database
-Provides: %{name}-mysql = %{version}-%{release}
-Provides: %{name}-mysql = %{version}-%{release}
-Provides: %{name}-mysqli = %{version}-%{release}
-Provides: %{name}-mysqli = %{version}-%{release}
-Provides: %{name}-pdo_mysql, %{name}-pdo_mysql
 Provides: %{real_name}_database
-Provides: %{real_name}-mysql = %{version}-%{release}
-Provides: %{real_name}-mysql = %{version}-%{release}
-Provides: %{real_name}-mysqli = %{version}-%{release}
-Provides: %{real_name}-mysqli = %{version}-%{release}
-Provides: %{real_name}-pdo_mysql, %{real_name}-pdo_mysql
+Provides: %{name}-mysql = %{version}-%{release}, %{name}-mysql%{?_isa} = %{version}-%{release}
+Provides: %{real_name}-mysql = %{version}-%{release}, %{real_name}-mysql%{?_isa} = %{version}-%{release}
+Provides: %{name}-mysqli = %{version}-%{release}, %{name}-mysqli%{?_isa} = %{version}-%{release}
+Provides: %{real_name}-mysqli = %{version}-%{release}, %{real_name}-mysqli%{?_isa} = %{version}-%{release}
+Provides: %{name}-pdo_mysql, %{name}-pdo_mysql%{?_isa}
+Provides: %{real_name}-pdo_mysql, %{real_name}-pdo_mysql%{?_isa}
 Conflicts: %{real_name}-mysqlnd < %{base_ver}
 
 %description mysqlnd
@@ -414,13 +399,13 @@ This package use the MySQL Native Driver
 %package pgsql
 Summary: A PostgreSQL database module for PHP
 Group: Development/Languages
-Provides: %{real_name}-pgsql = %{version}-%{release}
 Requires: %{name}-pdo%{?_isa} = %{version}-%{release}
-Provides: config(%{real_name}-pgsql) = %{version}-%{release}
 Provides: %{name}_database
-Provides: %{name}-pdo_pgsql, %{name}-pdo_pgsql
 Provides: %{real_name}_database
-Provides: %{real_name}-pdo_pgsql, %{real_name}-pdo_pgsql
+Provides: %{name}-pdo_pgsql, %{name}-pdo_pgsql%{?_isa}
+Provides: %{real_name}-pdo_pgsql, %{real_name}-pdo_pgsql%{?_isa}
+Provides: config(%{real_name}-pgsql) = %{version}-%{release}
+Provides: %{real_name}-pgsql = %{version}-%{release}, %{real_name}-pgsql%{?_isa} = %{version}-%{release}
 BuildRequires: krb5-devel, openssl-devel, postgresql-devel
 Conflicts: %{real_name}-pgsql < %{base_ver}
 
@@ -436,17 +421,17 @@ php package.
 %package process
 Summary: Modules for PHP script using system process interfaces
 Group: Development/Languages
-Provides: %{real_name}-process = %{version}-%{release}
 Requires: %{name}-common%{?_isa} = %{version}-%{release}
-Provides: %{name}-posix, %{name}-posix
-Provides: %{name}-sysvsem, %{name}-sysvsem
-Provides: %{name}-sysvshm, %{name}-sysvshm
-Provides: %{name}-sysvmsg, %{name}-sysvmsg
-Provides: %{real_name}-posix, %{real_name}-posix
-Provides: %{real_name}-sysvsem, %{real_name}-sysvsem
-Provides: %{real_name}-sysvshm, %{real_name}-sysvshm
-Provides: %{real_name}-sysvmsg, %{real_name}-sysvmsg
+Provides: %{name}-posix, %{name}-posix%{?_isa}
+Provides: %{real_name}-posix, %{real_name}-posix%{?_isa}
+Provides: %{name}-sysvsem, %{name}-sysvsem%{?_isa}
+Provides: %{real_name}-sysvsem, %{real_name}-sysvsem%{?_isa}
+Provides: %{name}-sysvshm, %{name}-sysvshm%{?_isa}
+Provides: %{real_name}-sysvshm, %{real_name}-sysvshm%{?_isa}
+Provides: %{name}-sysvmsg, %{name}-sysvmsg%{?_isa}
+Provides: %{real_name}-sysvmsg, %{real_name}-sysvmsg%{?_isa}
 Provides: config(%{real_name}-process) = %{version}-%{release}
+Provides: %{real_name}-process = %{version}-%{release}, %{real_name}-process%{?_isa} = %{version}-%{release}
 Conflicts: %{real_name}-process < %{base_ver}
 
 %description process
@@ -455,15 +440,15 @@ support to PHP using system interfaces for inter-process
 communication.
 
 %package odbc
-Group: Development/Languages
-Provides: %{real_name}-odbc = %{version}-%{release}
-Requires: %{name}-pdo%{?_isa} = %{version}-%{release}
 Summary: A module for PHP applications that use ODBC databases
+Group: Development/Languages
+Requires: %{name}-pdo%{?_isa} = %{version}-%{release}
 Provides: %{name}_database
-Provides: %{name}-pdo_odbc, %{name}-pdo_odbc
+Provides: %{name}-pdo_odbc, %{name}-pdo_odbc%{?_isa}
 Provides: %{real_name}_database
-Provides: %{real_name}-pdo_odbc, %{real_name}-pdo_odbc
+Provides: %{real_name}-pdo_odbc, %{real_name}-pdo_odbc%{?_isa}
 Provides: config(%{real_name}-odbc) = %{version}-%{release}
+Provides: %{real_name}-odbc = %{version}-%{release}, %{real_name}-odbc%{?_isa} = %{version}-%{release}
 BuildRequires: unixODBC-devel
 Conflicts: %{real_name}-odbc < %{base_ver}
 
@@ -477,11 +462,11 @@ applications, you will need to install this package and the php
 package.
 
 %package soap
-Group: Development/Languages
-Provides: %{real_name}-soap = %{version}-%{release}
-Requires: %{name}-common%{?_isa} = %{version}-%{release}
 Summary: A module for PHP applications that use the SOAP protocol
+Group: Development/Languages
+Requires: %{name}-common%{?_isa} = %{version}-%{release}
 Provides: config(%{real_name}-soap) = %{version}-%{release}
+Provides: %{real_name}-soap = %{version}-%{release}, %{real_name}-soap%{?_isa} = %{version}-%{release}
 BuildRequires: libxml2-devel
 Conflicts: %{real_name}-soap < %{base_ver}
 
@@ -493,16 +478,15 @@ support to PHP for using the SOAP web services protocol.
 Summary: A module for PHP applications that use Interbase/Firebird databases
 Group: Development/Languages
 BuildRequires:  firebird-devel
-Provides: %{name}-interbase = %{version}-%{release}
-Provides: %{real_name}-interbase = %{version}-%{release}
 Requires: %{name}-pdo%{?_isa} = %{version}-%{release}
 Provides: %{name}_database
-Provides: %{name}-firebird, %{name}-firebird
-Provides: %{name}-pdo_firebird, %{name}-pdo_firebird
 Provides: %{real_name}_database
-Provides: %{real_name}-firebird, %{real_name}-firebird
-Provides: %{real_name}-pdo_firebird, %{real_name}-pdo_firebird
+Provides: %{name}-firebird, %{name}-firebird%{?_isa}
+Provides: %{real_name}-firebird, %{real_name}-firebird%{?_isa}
+Provides: %{name}-pdo_firebird, %{name}-pdo_firebird%{?_isa}
+Provides: %{real_name}-pdo_firebird, %{real_name}-pdo_firebird%{?_isa}
 Provides: config(%{real_name}-interbase) = %{version}-%{release}
+Provides: %{real_name}-interbase = %{version}-%{release}, %{real_name}-interbase%{?_isa} = %{version}-%{release}
 Conflicts: %{real_name}-interbase < %{base_ver}
 
 %description interbase
@@ -521,9 +505,9 @@ License.
 %package snmp
 Summary: A module for PHP applications that query SNMP-managed devices
 Group: Development/Languages
-Provides: %{real_name}-snmp = %{version}-%{release}
 Requires: %{name}-common%{?_isa} = %{version}-%{release}, net-snmp
 Provides: config(%{real_name}-snmp) = %{version}-%{release}
+Provides: %{real_name}-snmp = %{version}-%{release}, %{real_name}-snmp%{?_isa} = %{version}-%{release}
 BuildRequires: net-snmp-devel
 Conflicts: %{real_name}-snmp < %{base_ver}
 
@@ -536,21 +520,21 @@ will need to install this package and the php package.
 %package xml
 Summary: A module for PHP applications which use XML
 Group: Development/Languages
-Provides: %{real_name}-xml = %{version}-%{release}
 Requires: %{name}-common%{?_isa} = %{version}-%{release}
 Provides: config(%{real_name}-xml) = %{version}-%{release}
+Provides: %{real_name}-xml = %{version}-%{release}, %{real_name}-xml%{?_isa} = %{version}-%{release}
 Obsoletes: %{name}-domxml, %{name}-dom
-Provides: %{name}-dom, %{name}-dom
-Provides: %{name}-xsl, %{name}-xsl
-Provides: %{name}-domxml, %{name}-domxml
-Provides: %{name}-wddx, %{name}-wddx
+Provides: %{name}-dom, %{name}-dom%{?_isa}
+Provides: %{real_name}-dom, %{real_name}-dom%{?_isa}
+Provides: %{name}-xsl, %{name}-xsl%{?_isa}
+Provides: %{real_name}-xsl, %{real_name}-xsl%{?_isa}
+Provides: %{name}-domxml, %{name}-domxml%{?_isa}
+Provides: %{real_name}-domxml, %{real_name}-domxml%{?_isa}
+Provides: %{name}-wddx, %{name}-wddx%{?_isa}
+Provides: %{real_name}-wddx, %{real_name}-wddx%{?_isa}
 Provides: %{name}-xmlreader, %{name}-xmlreader%{?_isa}
-Provides: %{name}-xmlwriter, %{name}-xmlwriter%{?_isa} 
-Provides: %{real_name}-dom, %{real_name}-dom
-Provides: %{real_name}-xsl, %{real_name}-xsl
-Provides: %{real_name}-domxml, %{real_name}-domxml
-Provides: %{real_name}-wddx, %{real_name}-wddx
 Provides: %{real_name}-xmlreader, %{real_name}-xmlreader%{?_isa}
+Provides: %{name}-xmlwriter, %{name}-xmlwriter%{?_isa}
 Provides: %{real_name}-xmlwriter, %{real_name}-xmlwriter%{?_isa}
 BuildRequires: libxslt-devel >= 1.0.18-1, libxml2-devel >= 2.4.14-1
 Conflicts: %{real_name}-xml < %{base_ver}
@@ -563,9 +547,9 @@ and performing XSL transformations on XML documents.
 %package xmlrpc
 Summary: A module for PHP applications which use the XML-RPC protocol
 Group: Development/Languages
-Provides: %{real_name}-xmlrpc = %{version}-%{release}
 Requires: %{name}-xml%{?_isa} = %{version}-%{release}
 Provides: config(%{real_name}-xmlrpc) = %{version}-%{release}
+Provides: %{real_name}-xmlrpc = %{version}-%{release}, %{real_name}-xmlrpc%{?_isa} = %{version}-%{release}
 Conflicts: %{real_name}-xmlrpc < %{base_ver}
 
 %description xmlrpc
@@ -575,9 +559,9 @@ support for the XML-RPC protocol to PHP.
 %package mbstring
 Summary: A module for PHP applications which need multi-byte string handling
 Group: Development/Languages
-Provides: %{real_name}-mbstring = %{version}-%{release}
 Requires: %{name}-common%{?_isa} = %{version}-%{release}
 Provides: config(%{real_name}-mbstring) = %{version}-%{release}
+Provides: %{real_name}-mbstring = %{version}-%{release}, %{real_name}-mbstring%{?_isa} = %{version}-%{release}
 Conflicts: %{real_name}-mbstring < %{base_ver}
 
 %description mbstring
@@ -587,9 +571,9 @@ support for multi-byte string handling to PHP.
 %package gd
 Summary: A module for PHP applications for using the gd graphics library
 Group: Development/Languages
-Provides: %{real_name}-gd = %{version}-%{release}
 Requires: %{name}-common%{?_isa} = %{version}-%{release}
 Provides: config(%{real_name}-gd) = %{version}-%{release}
+Provides: %{real_name}-gd = %{version}-%{release}, %{real_name}-gd%{?_isa} = %{version}-%{release}
 # Required to build the bundled GD library
 BuildRequires: libjpeg-devel, libpng-devel, freetype-devel
 BuildRequires: libXpm-devel, t1lib-devel
@@ -602,9 +586,9 @@ support for using the gd graphics library to PHP.
 %package bcmath
 Summary: A module for PHP applications for using the bcmath library
 Group: Development/Languages
-Provides: %{real_name}-bcmath = %{version}-%{release}
 Requires: %{name}-common%{?_isa} = %{version}-%{release}
 Provides: config(%{real_name}-bcmath) = %{version}-%{release}
+Provides: %{real_name}-bcmath = %{version}-%{release}, %{real_name}-bcmath%{?_isa} = %{version}-%{release}
 Conflicts: %{real_name}-bcmath < %{base_ver}
 
 %description bcmath
@@ -614,9 +598,9 @@ support for using the bcmath library to PHP.
 %package dba
 Summary: A database abstraction layer module for PHP applications
 Group: Development/Languages
-Provides: %{real_name}-dba = %{version}-%{release}
 Requires: %{name}-common%{?_isa} = %{version}-%{release}
 Provides: config(%{real_name}-dba) = %{version}-%{release}
+Provides: %{real_name}-dba = %{version}-%{release}, %{real_name}-dba%{?_isa} = %{version}-%{release}
 Conflicts: %{real_name}-dba < %{base_ver}
 
 %description dba
@@ -629,7 +613,7 @@ Summary: API for the Litespeed web server
 Group: Development/Languages
 Requires: %{name}-common%{?_isa} = %{version}-%{release}
 Provides: config(%{real_name}-litespeed) = %{version}-%{release}
-Provides: %{real_name}-litespeed = %{version}-%{release}
+Provides: %{real_name}-litespeed = %{version}-%{release}, %{real_name}-litespeed%{?_isa} = %{version}-%{release}
 Conflicts: %{real_name}-litespeed < %{base_ver}
 
 %description litespeed
@@ -639,9 +623,9 @@ The php-litespeed package contains the binary used by the Litespeed web server.
 %package mcrypt
 Summary: Standard PHP module provides mcrypt library support
 Group: Development/Languages
-Provides: %{real_name}-mcrypt = %{version}-%{release}
 Requires: %{name}-common%{?_isa} = %{version}-%{release}
 Provides: config(%{real_name}-mcrypt) = %{version}-%{release}
+Provides: %{real_name}-mcrypt = %{version}-%{release}, %{real_name}-mcrypt%{?_isa} = %{version}-%{release}
 BuildRequires: libmcrypt-devel
 Conflicts: %{real_name}-mcrypt < %{base_ver}
 
@@ -652,9 +636,9 @@ support for using the mcrypt library to PHP.
 %package tidy
 Summary: Standard PHP module provides tidy library support
 Group: Development/Languages
-Provides: %{real_name}-tidy = %{version}-%{release}
 Requires: %{name}-common%{?_isa} = %{version}-%{release}
 Provides: config(%{real_name}-tidy) = %{version}-%{release}
+Provides: %{real_name}-tidy = %{version}-%{release}, %{real_name}-tidy%{?_isa} = %{version}-%{release}
 BuildRequires: libtidy-devel
 Conflicts: %{real_name}-tidy < %{base_ver}
 
@@ -665,12 +649,12 @@ support for using the tidy library to PHP.
 %package mssql
 Summary: MSSQL database module for PHP
 Group: Development/Languages
-Provides: %{real_name}-mssql = %{version}-%{release}
 Requires: %{name}-pdo%{?_isa} = %{version}-%{release}
 BuildRequires: freetds-devel
 Provides: %{name}-pdo_dblib, %{name}-pdo_dblib
-Provides: %{real_name}-pdo_dblib, %{real_name}-pdo_dblib
+Provides: %{real_name}-pdo_dblib, %{real_name}-pdo_dblib%{?_isa}
 Provides: config(%{real_name}-mssql) = %{version}-%{release}
+Provides: %{real_name}-mssql = %{version}-%{release}, %{real_name}-mssql%{?_isa} = %{version}-%{release}
 Conflicts: %{real_name}-mssql < %{base_ver}
 
 %description mssql
@@ -682,13 +666,11 @@ database server which supports TDS can be accessed.
 %package embedded
 Summary: PHP library for embedding in applications
 Group: System Environment/Libraries
-Provides: %{real_name}-embedded = %{version}-%{release}
 Requires: %{name}-common%{?_isa} = %{version}-%{release}
+Provides: %{real_name}-embedded = %{version}-%{release}, %{real_name}-embedded%{?_isa} = %{version}-%{release}
 # doing a real -devel package for just the .so symlink is a bit overkill
-Provides: %{name}-embedded-devel = %{version}-%{release}
-Provides: %{name}-embedded-devel = %{version}-%{release}
-Provides: %{real_name}-embedded-devel = %{version}-%{release}
-Provides: %{real_name}-embedded-devel = %{version}-%{release}
+Provides: %{name}-embedded-devel = %{version}-%{release}, %{name}-embedded-devel%{?_isa} = %{version}-%{release}
+Provides: %{real_name}-embedded-devel = %{version}-%{release}, %{real_name}-embedded-devel%{?_isa} = %{version}-%{release}
 Conflicts: %{real_name}-embedded < %{base_ver}
 
 %description embedded
@@ -698,9 +680,9 @@ into applications to provide PHP scripting language support.
 %package pspell
 Summary: A module for PHP applications for using pspell interfaces
 Group: System Environment/Libraries
-Provides: %{real_name}-pspell = %{version}-%{release}
 Requires: %{name}-common%{?_isa} = %{version}-%{release}
 Provides: config(%{real_name}-pspell) = %{version}-%{release}
+Provides: %{real_name}-pspell = %{version}-%{release}, %{real_name}-pspell%{?_isa} = %{version}-%{release}
 BuildRequires: aspell-devel >= 0.50.0
 Conflicts: %{real_name}-pspell < %{base_ver}
 
@@ -711,9 +693,9 @@ support for using the pspell library to PHP.
 %package recode
 Summary: A module for PHP applications for using the recode library
 Group: System Environment/Libraries
-Provides: %{real_name}-recode = %{version}-%{release}
 Requires: %{name}-common%{?_isa} = %{version}-%{release}
 Provides: config(%{real_name}-recode) = %{version}-%{release}
+Provides: %{real_name}-recode = %{version}-%{release}, %{real_name}-recode%{?_isa} = %{version}-%{release}
 BuildRequires: recode-devel
 Conflicts: %{real_name}-recode < %{base_ver}
 
@@ -724,9 +706,9 @@ support for using the recode library to PHP.
 %package intl
 Summary: Internationalization extension for PHP applications
 Group: System Environment/Libraries
-Provides: %{real_name}-intl = %{version}-%{release}
 Requires: %{name}-common%{?_isa} = %{version}-%{release}
 Provides: config(%{real_name}-intl) = %{version}-%{release}
+Provides: %{real_name}-intl = %{version}-%{release}, %{real_name}-intl%{?_isa} = %{version}-%{release}
 BuildRequires: libicu-devel >= 3.6
 Conflicts: %{real_name}-intl < %{base_ver}
 
@@ -737,9 +719,9 @@ support for using the ICU library to PHP.
 %package enchant
 Summary: Human Language and Character Encoding Support
 Group: System Environment/Libraries
-Provides: %{real_name}-enchant = %{version}-%{release}
 Requires: %{name}-common%{?_isa} = %{version}-%{release}
 Provides: config(%{real_name}-enchant) = %{version}-%{release}
+Provides: %{real_name}-enchant = %{version}-%{release}, %{real_name}-enchant%{?_isa} = %{version}-%{release}
 BuildRequires: enchant-devel >= 1.2.4
 Conflicts: %{real_name}-enchant < %{base_ver}
 
