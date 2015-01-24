@@ -31,11 +31,10 @@
 %global with_litespeed 1
 
 %global real_name php
-%global name php54
 %global base_ver 5.4
 
 Summary: PHP scripting language for creating dynamic web sites
-Name: %{name}
+Name: php54
 Version: 5.4.36
 Release: 1.ius%{?dist}
 License: PHP
