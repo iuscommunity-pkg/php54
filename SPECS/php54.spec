@@ -35,7 +35,7 @@
 
 Summary: PHP scripting language for creating dynamic web sites
 Name: php54
-Version: 5.4.40
+Version: 5.4.41
 Release: 1.ius%{?dist}
 License: PHP
 Group: Development/Languages
@@ -1464,6 +1464,9 @@ fi
 
 
 %changelog
+* Fri May 15 2015 Ben Harper <ben.harper@rackspace.com> - 5.4.41-1.ius
+- Latest upstream
+
 * Thu Apr 16 2015 Ben Harper <ben.harper@rackspace.com> - 5.4.40-1.ius
 - Latest upstream
 
